@@ -7,7 +7,7 @@ import { NavigationContainer } from '@react-navigation/native';
 const App = () => {
   return (
     <NavigationContainer>
-      <StatusBar style="auto" />
+      <StatusBar style="inverted" />
       <MainStack />
     </NavigationContainer>
   );

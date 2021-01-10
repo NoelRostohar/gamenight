@@ -8,7 +8,12 @@ const theme: Theme = {
     faded: '#BABABA',
     lightFade: '#DADADA',
     confirmation: '#256FFF',
-    danger: '#FF0000'
+    danger: '#FF0000',
+    background: {
+        backgroundColor: '#20232A',
+        flex: 1,
+        padding: 20,
+    }
 }
 
 export default theme;

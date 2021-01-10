@@ -6,5 +6,10 @@ export interface Theme {
     faded: string,
     lightFade: string,
     confirmation: string,
-    danger: string
+    danger: string,
+    background: {
+        backgroundColor: string,
+        flex: number,
+        padding: number,
+    }
 }
