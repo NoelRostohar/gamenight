@@ -1,12 +1,15 @@
 import React from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 
+import ActionButton from '../components/ActionButton';
+
 import theme from '../theme';
 
 const Home = () => {
   return (
     <View style={styles.bg}>
-      <Text style={styles.text}>Home Page</Text>
+      <Text style={styles.text}>Home Pagee</Text>
+      <ActionButton />
     </View>
   );
 };

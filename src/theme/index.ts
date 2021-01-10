@@ -13,7 +13,7 @@ const theme: Theme = {
         backgroundColor: '#20232A',
         flex: 1,
         padding: 20,
-    }
+    },
 }
 
 export default theme;
