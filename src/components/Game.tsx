@@ -3,15 +3,10 @@ import { View, Image, Text, StyleSheet } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 
 import theme from '../theme';
+import { GameType } from '../types';
 
 interface GameProps {
-  game: {
-    url: string;
-    name: string;
-    minPlayers: number | string;
-    maxPlayers: number | string;
-    owner: string;
-  };
+  game: GameType;
 }
 
 const Game: React.FC<GameProps> = ({

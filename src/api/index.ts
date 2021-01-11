@@ -28,54 +28,9 @@ export const games = [
         minPlayers: 2,
         maxPlayers: 7,
         owner: 'Roly',
-        url: 'https://shop.jjcards.com/assets/images/board%20games/asmodee/mysterium.jpg'
-    },
-    {
-        name: 'Mysterium',
-        id: 2,
-        minPlayers: 2,
-        maxPlayers: 7,
-        owner: 'Roly',
-        url: 'https://shop.jjcards.com/assets/images/board%20games/asmodee/mysterium.jpg'
-    },
-    {
-        name: 'Mysterium',
-        id: 3,
-        minPlayers: 2,
-        maxPlayers: 7,
-        owner: 'Roly',
-        url: 'https://shop.jjcards.com/assets/images/board%20games/asmodee/mysterium.jpg'
-    },
-    {
-        name: 'Mysterium',
-        id: 4,
-        minPlayers: 2,
-        maxPlayers: 7,
-        owner: 'Roly',
-        url: 'https://shop.jjcards.com/assets/images/board%20games/asmodee/mysterium.jpg'
-    },
-    {
-        name: 'Mysterium',
-        id: 5,
-        minPlayers: 2,
-        maxPlayers: 7,
-        owner: 'Roly',
-        url: 'https://shop.jjcards.com/assets/images/board%20games/asmodee/mysterium.jpg'
-    },
-    {
-        name: 'Mysterium',
-        id: 6,
-        minPlayers: 2,
-        maxPlayers: 7,
-        owner: 'Roly',
-        url: 'https://shop.jjcards.com/assets/images/board%20games/asmodee/mysterium.jpg'
-    },
-    {
-        name: 'Mysterium',
-        id: 7,
-        minPlayers: 2,
-        maxPlayers: 7,
-        owner: 'Roly',
-        url: 'https://shop.jjcards.com/assets/images/board%20games/asmodee/mysterium.jpg'
+        url: 'https://shop.jjcards.com/assets/images/board%20games/asmodee/mysterium.jpg',
+        playtime: '40 - 60 min',
+        genres: ['Mystery', 'Cooperative'],
+        howToPlay: 'https://www.youtube.com/watch?v=Bw2Xz9wp4KI&ab_channel=ShutUp%26SitDown'
     },
 ]

@@ -1,5 +1,12 @@
-import React, { Fragment } from 'react';
-import { View, StyleSheet, Text, ScrollView } from 'react-native';
+import React from 'react';
+import {
+  View,
+  StyleSheet,
+  Text,
+  ScrollView,
+  TouchableOpacity,
+} from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 import ActionButton from '../components/ActionButton';
 import GameNight, { CARD_WIDTH } from '../components/GameNight';
@@ -12,6 +19,8 @@ import { gameNight, games } from '../api';
 //TODO: Might need refactor to SectionList
 
 const Home = () => {
+  const navigation = useNavigation();
+
   return (
     <View style={styles.bg}>
       <ScrollView nestedScrollEnabled>
@@ -35,10 +44,13 @@ const Home = () => {
           <Text style={styles.sectionTitle}>All available games</Text>
           {games.map((game) => {
             return (
-              <Fragment key={game.id}>
+              <TouchableOpacity
+                key={game.id}
+                onPress={() => navigation.navigate('GameDetails', game)}
+              >
                 <Game game={game} />
                 <Divider />
-              </Fragment>
+              </TouchableOpacity>
             );
           })}
         </View>
