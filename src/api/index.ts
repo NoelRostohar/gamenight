@@ -20,3 +20,14 @@ export const gameNight = [{
     id: 3,
 }, 
 ]
+
+export const games = [
+    {
+        name: 'Mysterium',
+        id: 1,
+        minPlayers: 2,
+        maxPlayers: 7,
+        owner: 'Roly',
+        url: 'https://shop.jjcards.com/assets/images/board%20games/asmodee/mysterium.jpg'
+    }
+]
