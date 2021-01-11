@@ -28,6 +28,7 @@ export const games = [
         minPlayers: 2,
         maxPlayers: 7,
         owner: 'Roly',
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed blandit nec purus in rhoncus. Phasellus ultricies hendrerit quam, quis rhoncus dui facilisis nec. Nulla ultricies magna vitae sem fermentum accumsan. Nullam lorem est, finibus in vestibulum nec, pharetra a ipsum. Aliquam dictum dui sed lectus pharetra, in varius nunc venenatis. Vestibulum a massa quis diam tempor sodales. Proin elit ipsum, euismod sed risus vel, consectetur cursus tellus. Phasellus ullamcorper odio ornare purus dapibus tristique. Suspendisse euismod tincidunt mauris, ac sagittis tellus molestie ac. Donec interdum, lorem a consequat consequat, turpis metus iaculis justo, at lobortis augue lorem ut sem. Mauris a tortor placerat, maximus justo id, scelerisque ligula.',
         url: 'https://shop.jjcards.com/assets/images/board%20games/asmodee/mysterium.jpg',
         playtime: '40 - 60 min',
         genres: ['Mystery', 'Cooperative'],

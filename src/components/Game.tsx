@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Image, Text, StyleSheet } from 'react-native';
-import { MaterialIcons } from '@expo/vector-icons';
+
+import IconText from './IconText';
 
 import theme from '../theme';
 import { GameType } from '../types';
@@ -17,34 +18,24 @@ const Game: React.FC<GameProps> = ({
       <Image style={styles.image} source={{ uri: url }} />
       <View style={styles.infoContainer}>
         <Text style={styles.name}>{name}</Text>
-        <View style={[styles.row, { marginTop: 6, marginBottom: 6 }]}>
-          <MaterialIcons
-            style={styles.icon}
-            name="group"
+        <View style={{ marginTop: 6, marginBottom: 6 }}>
+          <IconText
+            icon="group"
             size={12}
-            color={theme.faded}
+            text={`${minPlayers} - ${maxPlayers}`}
           />
-          <Text style={styles.info}>{`${minPlayers} - ${maxPlayers}`}</Text>
         </View>
-        <View style={styles.row}>
-          <MaterialIcons
-            style={styles.icon}
-            name="person-pin-circle"
-            size={12}
-            color={theme.faded}
-          />
-          <Text style={styles.info}>{`Owned by ${owner}`}</Text>
-        </View>
+        <IconText
+          icon="person-pin-circle"
+          size={12}
+          text={`Owned by ${owner}`}
+        />
       </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  row: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
   root: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -64,13 +55,6 @@ const styles = StyleSheet.create({
   name: {
     color: theme.light,
     fontSize: 16,
-  },
-  icon: {
-    marginRight: 3,
-  },
-  info: {
-    color: theme.faded,
-    fontSize: 12,
   },
 });
 

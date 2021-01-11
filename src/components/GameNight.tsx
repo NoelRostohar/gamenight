@@ -7,7 +7,8 @@ import {
   StyleSheet,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { MaterialIcons } from '@expo/vector-icons';
+
+import IconText from './IconText';
 
 import theme from '../theme';
 
@@ -37,24 +38,8 @@ const GameNight: React.FC<GameNightProps> = ({
             <Text style={styles.proposed}>Proposed by</Text>
             <Text style={styles.user}>{proposedBy}</Text>
             <View style={[styles.row, styles.infoRow]}>
-              <View style={styles.row}>
-                <MaterialIcons
-                  name="event"
-                  size={12}
-                  color={theme.faded}
-                  style={styles.icon}
-                />
-                <Text style={styles.info}>{date}</Text>
-              </View>
-              <View style={styles.row}>
-                <MaterialIcons
-                  name="location-on"
-                  size={12}
-                  color={theme.faded}
-                  style={styles.icon}
-                />
-                <Text style={styles.info}>{place}</Text>
-              </View>
+              <IconText icon="event" size={12} text={date} />
+              <IconText icon="location-on" size={12} text={place} />
             </View>
           </View>
         </LinearGradient>
@@ -94,13 +79,6 @@ const styles = StyleSheet.create({
   },
   infoRow: {
     marginTop: 6,
-  },
-  icon: {
-    marginRight: 3,
-  },
-  info: {
-    color: theme.faded,
-    fontSize: 12,
   },
   row: {
     flexDirection: 'row',
