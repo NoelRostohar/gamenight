@@ -13,14 +13,14 @@ import theme from '../theme';
 import { gameNight } from '../api';
 
 const CARD_HEIGHT: number = Dimensions.get('window').height / 1.9;
-const CARD_WIDTH: number = CARD_HEIGHT * 0.7;
+const CARD_WIDTH: number = CARD_HEIGHT * 0.6;
 
 const GameNight = () => {
   return (
     <View style={styles.root}>
       <ImageBackground style={styles.img} source={{ uri: gameNight.url }}>
         <LinearGradient
-          colors={['transparent', 'rgba(0,0,0,0.85)']}
+          colors={['transparent', 'rgba(0,0,0,1)']}
           style={styles.gradient}
         >
           <View style={styles.infoContainer}>
@@ -79,6 +79,7 @@ const styles = StyleSheet.create({
   user: {
     color: theme.light,
     fontSize: 16,
+    fontWeight: 'bold',
   },
   infoRow: {
     marginTop: 6,
