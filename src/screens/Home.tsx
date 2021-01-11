@@ -1,14 +1,15 @@
 import React from 'react';
-import { Text, View, StyleSheet } from 'react-native';
+import { Text, View, StyleSheet, Image } from 'react-native';
 
 import ActionButton from '../components/ActionButton';
+import GameNight from '../components/GameNight';
 
 import theme from '../theme';
 
 const Home = () => {
   return (
     <View style={styles.bg}>
-      <Text style={styles.text}>Home Pagee</Text>
+      <GameNight />
       <ActionButton />
     </View>
   );
@@ -16,9 +17,6 @@ const Home = () => {
 
 const styles = StyleSheet.create({
   bg: theme.background,
-  text: {
-    color: theme.light,
-  },
 });
 
 export default Home;
