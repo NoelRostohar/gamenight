@@ -30,7 +30,16 @@ const BUTTON_WIDTH: number = Dimensions.get('window').width / 1.5;
 
 const GameDetails: React.FC<GameDetailsProps> = ({
   route: {
-    params: { url, name, minPlayers, maxPlayers, owner, playtime, description },
+    params: {
+      url,
+      name,
+      minPlayers,
+      maxPlayers,
+      owner,
+      playtime,
+      description,
+      howToPlay,
+    },
   },
 }) => {
   const navigation = useNavigation();
@@ -71,7 +80,10 @@ const GameDetails: React.FC<GameDetailsProps> = ({
         </View>
         <Text style={styles.descriptionTitle}>Description</Text>
         <Text style={styles.descriptionText}>{description}</Text>
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => navigation.navigate('HowToPlay', { howToPlay, name })}
+        >
           <Text style={styles.buttonText}>Watch How To Play</Text>
         </TouchableOpacity>
       </ScrollView>

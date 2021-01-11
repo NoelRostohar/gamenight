@@ -7,6 +7,7 @@ import {
 
 import Home from '../screens/Home';
 import GameDetails from '../screens/GameDetails';
+import HowToPlay from '../screens/HowToPlay';
 
 import theme from '../theme';
 import { GameType } from '../types';
@@ -14,6 +15,7 @@ import { GameType } from '../types';
 export type MainStackParamList = {
   Home: undefined;
   GameDetails: GameType;
+  HowToPlay: { howToPlay: string; name: string };
 };
 
 const Stack = createStackNavigator<MainStackParamList>();
@@ -22,7 +24,6 @@ const MainStack = () => {
   return (
     <Stack.Navigator
       screenOptions={{
-        cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
         headerStyle: {
           backgroundColor: theme.dark,
           shadowOpacity: 0,
@@ -42,12 +43,14 @@ const MainStack = () => {
         name="GameDetails"
         component={GameDetails}
         options={{
+          cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
           headerTransparent: true,
           headerTintColor: theme.light,
           headerTitleStyle: { display: 'none' },
           header: () => null,
         }}
       />
+      <Stack.Screen name="HowToPlay" component={HowToPlay} />
     </Stack.Navigator>
   );
 };

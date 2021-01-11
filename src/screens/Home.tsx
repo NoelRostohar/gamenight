@@ -37,6 +37,7 @@ const Home = () => {
           snapToAlignment="start"
           decelerationRate="fast"
           snapToInterval={CARD_WIDTH}
+          overScrollMode="never"
         >
           {gameNight.map((game) => {
             return <GameNight key={game.id} gameNight={game} />;
