@@ -10,22 +10,32 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { MaterialIcons } from '@expo/vector-icons';
 
 import theme from '../theme';
-import { gameNight } from '../api';
+
+interface GameNightProps {
+  gameNight: {
+    proposedBy: string;
+    date: string;
+    place: string;
+    url: string;
+  };
+}
 
 const CARD_HEIGHT: number = Dimensions.get('window').height / 1.9;
-const CARD_WIDTH: number = CARD_HEIGHT * 0.6;
+export const CARD_WIDTH: number = CARD_HEIGHT * 0.6;
 
-const GameNight = () => {
+const GameNight: React.FC<GameNightProps> = ({
+  gameNight: { proposedBy, date, place, url },
+}) => {
   return (
     <View style={styles.root}>
-      <ImageBackground style={styles.img} source={{ uri: gameNight.url }}>
+      <ImageBackground style={styles.img} source={{ uri: url }}>
         <LinearGradient
           colors={['transparent', 'rgba(0,0,0,1)']}
           style={styles.gradient}
         >
           <View style={styles.infoContainer}>
             <Text style={styles.proposed}>Proposed by</Text>
-            <Text style={styles.user}>{gameNight.proposedBy}</Text>
+            <Text style={styles.user}>{proposedBy}</Text>
             <View style={[styles.row, styles.infoRow]}>
               <View style={styles.row}>
                 <MaterialIcons
@@ -34,7 +44,7 @@ const GameNight = () => {
                   color={theme.faded}
                   style={styles.icon}
                 />
-                <Text style={styles.info}>{gameNight.date}</Text>
+                <Text style={styles.info}>{date}</Text>
               </View>
               <View style={styles.row}>
                 <MaterialIcons
@@ -43,7 +53,7 @@ const GameNight = () => {
                   color={theme.faded}
                   style={styles.icon}
                 />
-                <Text style={styles.info}>{gameNight.place}</Text>
+                <Text style={styles.info}>{place}</Text>
               </View>
             </View>
           </View>
@@ -59,6 +69,7 @@ const styles = StyleSheet.create({
     width: CARD_WIDTH,
     borderRadius: 25,
     overflow: 'hidden',
+    marginRight: 15,
   },
   img: {
     height: '100%',

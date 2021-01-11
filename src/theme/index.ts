@@ -12,7 +12,6 @@ const theme: Theme = {
     background: {
         backgroundColor: '#20232A',
         flex: 1,
-        padding: 20,
     },
 }
 

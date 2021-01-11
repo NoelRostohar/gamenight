@@ -1,15 +1,29 @@
 import React from 'react';
-import { Text, View, StyleSheet, Image } from 'react-native';
+import { View, StyleSheet, ScrollView } from 'react-native';
 
 import ActionButton from '../components/ActionButton';
-import GameNight from '../components/GameNight';
+import GameNight, { CARD_WIDTH } from '../components/GameNight';
 
 import theme from '../theme';
+import { gameNight } from '../api';
 
 const Home = () => {
   return (
     <View style={styles.bg}>
-      <GameNight />
+      <ScrollView
+        horizontal
+        contentContainerStyle={{
+          paddingLeft: 20,
+          paddingRight: 5,
+        }}
+        snapToAlignment="center"
+        decelerationRate="fast"
+        snapToInterval={CARD_WIDTH}
+      >
+        {gameNight.map((game) => {
+          return <GameNight key={game.id} gameNight={game} />;
+        })}
+      </ScrollView>
       <ActionButton />
     </View>
   );

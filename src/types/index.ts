@@ -10,6 +10,5 @@ export interface Theme {
     background: {
         backgroundColor: string,
         flex: number,
-        padding: number,
     }
 }
