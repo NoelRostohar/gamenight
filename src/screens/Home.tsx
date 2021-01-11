@@ -5,6 +5,7 @@ import {
   Text,
   ScrollView,
   TouchableOpacity,
+  SafeAreaView,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
@@ -22,7 +23,7 @@ const Home = () => {
   const navigation = useNavigation();
 
   return (
-    <View style={styles.bg}>
+    <SafeAreaView style={styles.bg}>
       <ScrollView nestedScrollEnabled>
         <ScrollView
           horizontal
@@ -31,8 +32,9 @@ const Home = () => {
           contentContainerStyle={{
             paddingLeft: 20,
             paddingRight: 5,
+            paddingTop: 15,
           }}
-          snapToAlignment="center"
+          snapToAlignment="start"
           decelerationRate="fast"
           snapToInterval={CARD_WIDTH}
         >
@@ -56,7 +58,7 @@ const Home = () => {
         </View>
       </ScrollView>
       <ActionButton />
-    </View>
+    </SafeAreaView>
   );
 };
 

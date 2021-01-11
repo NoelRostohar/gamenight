@@ -38,7 +38,9 @@ const GameNight: React.FC<GameNightProps> = ({
             <Text style={styles.proposed}>Proposed by</Text>
             <Text style={styles.user}>{proposedBy}</Text>
             <View style={[styles.row, styles.infoRow]}>
-              <IconText icon="event" size={12} text={date} />
+              <View style={{ marginRight: 10 }}>
+                <IconText icon="event" size={12} text={date} />
+              </View>
               <IconText icon="location-on" size={12} text={place} />
             </View>
           </View>
@@ -83,7 +85,6 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginRight: 10,
   },
 });
 

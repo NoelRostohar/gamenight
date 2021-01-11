@@ -35,6 +35,7 @@ const MainStack = () => {
         component={Home}
         options={{
           headerTitle: () => <Text style={styles.title}>Game Nights</Text>,
+          headerTitleAlign: 'left',
         }}
       />
       <Stack.Screen
