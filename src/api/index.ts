@@ -29,5 +29,53 @@ export const games = [
         maxPlayers: 7,
         owner: 'Roly',
         url: 'https://shop.jjcards.com/assets/images/board%20games/asmodee/mysterium.jpg'
-    }
+    },
+    {
+        name: 'Mysterium',
+        id: 2,
+        minPlayers: 2,
+        maxPlayers: 7,
+        owner: 'Roly',
+        url: 'https://shop.jjcards.com/assets/images/board%20games/asmodee/mysterium.jpg'
+    },
+    {
+        name: 'Mysterium',
+        id: 3,
+        minPlayers: 2,
+        maxPlayers: 7,
+        owner: 'Roly',
+        url: 'https://shop.jjcards.com/assets/images/board%20games/asmodee/mysterium.jpg'
+    },
+    {
+        name: 'Mysterium',
+        id: 4,
+        minPlayers: 2,
+        maxPlayers: 7,
+        owner: 'Roly',
+        url: 'https://shop.jjcards.com/assets/images/board%20games/asmodee/mysterium.jpg'
+    },
+    {
+        name: 'Mysterium',
+        id: 5,
+        minPlayers: 2,
+        maxPlayers: 7,
+        owner: 'Roly',
+        url: 'https://shop.jjcards.com/assets/images/board%20games/asmodee/mysterium.jpg'
+    },
+    {
+        name: 'Mysterium',
+        id: 6,
+        minPlayers: 2,
+        maxPlayers: 7,
+        owner: 'Roly',
+        url: 'https://shop.jjcards.com/assets/images/board%20games/asmodee/mysterium.jpg'
+    },
+    {
+        name: 'Mysterium',
+        id: 7,
+        minPlayers: 2,
+        maxPlayers: 7,
+        owner: 'Roly',
+        url: 'https://shop.jjcards.com/assets/images/board%20games/asmodee/mysterium.jpg'
+    },
 ]
