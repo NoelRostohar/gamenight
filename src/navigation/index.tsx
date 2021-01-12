@@ -50,7 +50,11 @@ const MainStack = () => {
           header: () => null,
         }}
       />
-      <Stack.Screen name="HowToPlay" component={HowToPlay} />
+      <Stack.Screen
+        name="HowToPlay"
+        component={HowToPlay}
+        options={{ headerBackTitle: '' }}
+      />
     </Stack.Navigator>
   );
 };

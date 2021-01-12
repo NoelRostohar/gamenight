@@ -1,18 +1,16 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import {
   View,
   StyleSheet,
   Text,
-  ScrollView,
-  ImageBackground,
   Dimensions,
   TouchableOpacity,
-  StatusBar,
-  SafeAreaView,
 } from 'react-native';
 import { RouteProp } from '@react-navigation/native';
 import { MaterialIcons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
+import Animated, { Extrapolate } from 'react-native-reanimated';
+import { getStatusBarHeight } from 'react-native-status-bar-height';
 
 import IconText from '../components/IconText';
 
@@ -44,68 +42,103 @@ const GameDetails: React.FC<GameDetailsProps> = ({
 }) => {
   const navigation = useNavigation();
 
+  const scrollY = useRef(new Animated.Value(0)).current;
+
+  const imgHeight = scrollY.interpolate({
+    inputRange: [-200, 0, IMAGE_HEIGHT],
+    outputRange: [IMAGE_HEIGHT + 200, IMAGE_HEIGHT, 0],
+    extrapolate: Extrapolate.CLAMP,
+  });
+
   return (
-    <SafeAreaView style={styles.bg}>
-      <ImageBackground style={styles.img} source={{ uri: url }}>
-        <TouchableOpacity
-          style={styles.backIcon}
-          onPress={() => navigation.goBack()}
-        >
-          <MaterialIcons name="arrow-back" size={24} color={theme.light} />
-        </TouchableOpacity>
-      </ImageBackground>
-      <ScrollView
-        overScrollMode="never"
-        contentContainerStyle={{
-          padding: 20,
-        }}
+    <View style={styles.bg}>
+      <Animated.Image
+        style={[styles.img, { height: imgHeight }]}
+        source={{ uri: url }}
+      />
+      <TouchableOpacity
+        style={styles.backIcon}
+        onPress={() => navigation.goBack()}
       >
-        <Text style={styles.name}>{name}</Text>
-        <View style={styles.iconRow}>
-          <View style={styles.iconSpacing}>
+        <MaterialIcons name="arrow-back" size={24} color={theme.light} />
+      </TouchableOpacity>
+      <Animated.ScrollView
+        onScroll={Animated.event(
+          [
+            {
+              nativeEvent: {
+                contentOffset: {
+                  y: scrollY,
+                },
+              },
+            },
+          ],
+          { useNativeDriver: true }
+        )}
+        scrollEventThrottle={16}
+        overScrollMode="never"
+      >
+        <View
+          style={{
+            paddingHorizontal: 20,
+            paddingBottom: 20,
+            paddingTop: IMAGE_HEIGHT + 20,
+          }}
+        >
+          <Text style={styles.name}>{name}</Text>
+          <View style={styles.iconRow}>
+            <View style={styles.iconSpacing}>
+              <IconText
+                icon="group"
+                size={12}
+                text={`${minPlayers} - ${maxPlayers}`}
+              />
+            </View>
+            <View style={styles.iconSpacing}>
+              <IconText icon="access-time" size={12} text={playtime} />
+            </View>
             <IconText
-              icon="group"
+              icon="person-pin-circle"
               size={12}
-              text={`${minPlayers} - ${maxPlayers}`}
+              text={`Owned by ${owner}`}
             />
           </View>
-          <View style={styles.iconSpacing}>
-            <IconText icon="access-time" size={12} text={playtime} />
-          </View>
-          <IconText
-            icon="person-pin-circle"
-            size={12}
-            text={`Owned by ${owner}`}
-          />
+          <Text style={styles.descriptionTitle}>Description</Text>
+          <Text style={styles.descriptionText}>{description}</Text>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() =>
+              navigation.navigate('HowToPlay', { howToPlay, name })
+            }
+          >
+            <Text style={styles.buttonText}>Watch How To Play</Text>
+          </TouchableOpacity>
         </View>
-        <Text style={styles.descriptionTitle}>Description</Text>
-        <Text style={styles.descriptionText}>{description}</Text>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => navigation.navigate('HowToPlay', { howToPlay, name })}
-        >
-          <Text style={styles.buttonText}>Watch How To Play</Text>
-        </TouchableOpacity>
-      </ScrollView>
-    </SafeAreaView>
+      </Animated.ScrollView>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   bg: theme.background,
   img: {
-    height: IMAGE_HEIGHT,
+    // height: IMAGE_HEIGHT,
+    position: 'absolute',
+    width: '100%',
+    top: 0,
+    left: 0,
   },
   backIcon: {
-    backgroundColor: 'rgba(0,0,0,0.5)',
+    backgroundColor: 'rgba(0,0,0,0.6)',
     height: 40,
     width: 40,
+    position: 'absolute',
+    top: getStatusBarHeight() + 20,
+    left: 20,
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 100,
-    // @ts-expect-error
-    marginTop: StatusBar?.currentHeight + 20,
-    marginLeft: 20,
+    zIndex: 1,
   },
   name: {
     fontSize: 24,

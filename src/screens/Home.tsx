@@ -5,7 +5,6 @@ import {
   Text,
   ScrollView,
   TouchableOpacity,
-  SafeAreaView,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
@@ -23,7 +22,7 @@ const Home = () => {
   const navigation = useNavigation();
 
   return (
-    <SafeAreaView style={styles.bg}>
+    <View style={styles.bg}>
       <ScrollView nestedScrollEnabled>
         <ScrollView
           horizontal
@@ -59,7 +58,7 @@ const Home = () => {
         </View>
       </ScrollView>
       <ActionButton />
-    </SafeAreaView>
+    </View>
   );
 };
 
