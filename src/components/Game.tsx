@@ -1,16 +1,8 @@
 import React from 'react';
-import {
-  View,
-  Image,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-  TouchableOpacityBase,
-} from 'react-native';
+import { View, Image, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 import IconText from './IconText';
-import Divider from './Divider';
 
 import theme from '../theme';
 import { GameType } from '../types';
@@ -43,7 +35,6 @@ const Game: React.FC<GameProps> = ({ game }) => {
           />
         </View>
       </View>
-      <Divider />
     </TouchableOpacity>
   );
 };

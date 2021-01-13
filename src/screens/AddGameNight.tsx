@@ -1,14 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, Fragment } from 'react';
 import {
   View,
   ScrollView,
   Text,
   StyleSheet,
   TouchableOpacity,
+  Switch,
 } from 'react-native';
 
 import Input from '../components/Input';
 import Game from '../components/Game';
+import Divider from '../components/Divider';
 
 import theme from '../theme';
 import { games } from '../api';
@@ -46,9 +48,20 @@ const AddGameNight = () => {
           <Text style={styles.filterButton}>Select All</Text>
         </TouchableOpacity>
       </View>
-      {games.map((game) => (
-        <Game key={game.id} game={game} />
-      ))}
+      {games.map((game) => {
+        return (
+          <Fragment key={game.id}>
+            <View style={styles.gameRow}>
+              <Game game={game} />
+              <Switch
+                trackColor={{ false: '#767577', true: '#81b0ff' }}
+                ios_backgroundColor="#3e3e3e"
+              />
+            </View>
+            <Divider />
+          </Fragment>
+        );
+      })}
     </ScrollView>
   );
 };
@@ -90,6 +103,11 @@ const styles = StyleSheet.create({
     textTransform: 'uppercase',
     fontSize: 14,
     marginLeft: 20,
+  },
+  gameRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
   },
 });
 
