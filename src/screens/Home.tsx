@@ -11,7 +11,6 @@ import { useNavigation } from '@react-navigation/native';
 import ActionButton from '../components/ActionButton';
 import GameNight, { CARD_WIDTH } from '../components/GameNight';
 import Game from '../components/Game';
-import Divider from '../components/Divider';
 
 import theme from '../theme';
 import { gameNight, games } from '../api';
@@ -45,19 +44,11 @@ const Home = () => {
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>All available games</Text>
           {games.map((game) => {
-            return (
-              <TouchableOpacity
-                key={game.id}
-                onPress={() => navigation.navigate('GameDetails', game)}
-              >
-                <Game game={game} />
-                <Divider />
-              </TouchableOpacity>
-            );
+            return <Game key={game.id} game={game} />;
           })}
         </View>
       </ScrollView>
-      <ActionButton />
+      <ActionButton onPress={() => navigation.navigate('AddGameNight')} />
     </View>
   );
 };

@@ -4,9 +4,13 @@ import { MaterialIcons } from '@expo/vector-icons';
 
 import theme from '../theme';
 
-const ActionButton = () => {
+interface ActionButtonProps {
+  [rest: string]: any;
+}
+
+const ActionButton: React.FC<ActionButtonProps> = ({ ...rest }) => {
   return (
-    <TouchableOpacity style={styles.root}>
+    <TouchableOpacity {...rest} style={styles.root}>
       <MaterialIcons name="add" size={24} color={theme.light} />
     </TouchableOpacity>
   );

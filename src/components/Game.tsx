@@ -1,7 +1,16 @@
 import React from 'react';
-import { View, Image, Text, StyleSheet } from 'react-native';
+import {
+  View,
+  Image,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  TouchableOpacityBase,
+} from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 import IconText from './IconText';
+import Divider from './Divider';
 
 import theme from '../theme';
 import { GameType } from '../types';
@@ -10,28 +19,32 @@ interface GameProps {
   game: GameType;
 }
 
-const Game: React.FC<GameProps> = ({
-  game: { url, name, minPlayers, maxPlayers, owner },
-}) => {
+const Game: React.FC<GameProps> = ({ game }) => {
+  const { url, name, minPlayers, maxPlayers, owner } = game;
+  const navigation = useNavigation();
+
   return (
-    <View style={styles.root}>
-      <Image style={styles.image} source={{ uri: url }} />
-      <View style={styles.infoContainer}>
-        <Text style={styles.name}>{name}</Text>
-        <View style={{ marginTop: 6, marginBottom: 6 }}>
+    <TouchableOpacity onPress={() => navigation.navigate('GameDetails', game)}>
+      <View style={styles.root}>
+        <Image style={styles.image} source={{ uri: url }} />
+        <View style={styles.infoContainer}>
+          <Text style={styles.name}>{name}</Text>
+          <View style={{ marginTop: 6, marginBottom: 6 }}>
+            <IconText
+              icon="group"
+              size={12}
+              text={`${minPlayers} - ${maxPlayers}`}
+            />
+          </View>
           <IconText
-            icon="group"
+            icon="person-pin-circle"
             size={12}
-            text={`${minPlayers} - ${maxPlayers}`}
+            text={`Owned by ${owner}`}
           />
         </View>
-        <IconText
-          icon="person-pin-circle"
-          size={12}
-          text={`Owned by ${owner}`}
-        />
       </View>
-    </View>
+      <Divider />
+    </TouchableOpacity>
   );
 };
 

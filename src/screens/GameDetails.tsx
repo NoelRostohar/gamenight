@@ -5,6 +5,8 @@ import {
   Text,
   Dimensions,
   TouchableOpacity,
+  SafeAreaView,
+  Platform,
 } from 'react-native';
 import { RouteProp } from '@react-navigation/native';
 import { MaterialIcons } from '@expo/vector-icons';
@@ -51,7 +53,7 @@ const GameDetails: React.FC<GameDetailsProps> = ({
   });
 
   return (
-    <View style={styles.bg}>
+    <SafeAreaView style={styles.bg}>
       <Animated.Image
         style={[styles.img, { height: imgHeight }]}
         source={{ uri: url }}
@@ -82,7 +84,7 @@ const GameDetails: React.FC<GameDetailsProps> = ({
           style={{
             paddingHorizontal: 20,
             paddingBottom: 20,
-            paddingTop: IMAGE_HEIGHT + 20,
+            paddingTop: IMAGE_HEIGHT,
           }}
         >
           <Text style={styles.name}>{name}</Text>
@@ -115,12 +117,15 @@ const GameDetails: React.FC<GameDetailsProps> = ({
           </TouchableOpacity>
         </View>
       </Animated.ScrollView>
-    </View>
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
-  bg: theme.background,
+  bg: {
+    ...theme.background,
+    paddingTop: Platform.OS === 'android' ? getStatusBarHeight() : 0,
+  },
   img: {
     // height: IMAGE_HEIGHT,
     position: 'absolute',
