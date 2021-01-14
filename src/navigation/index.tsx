@@ -63,14 +63,15 @@ const MainStack = () => {
         component={AddGameNight}
         options={{
           headerTitle: 'Propse a Game Night!',
-          headerBackImage: ({ tintColor }) => (
-            <MaterialIcons name="close" size={24} color={tintColor} />
+          headerBackTitleVisible: false,
+          headerBackImage: () => (
+            <MaterialIcons name="close" size={24} color={theme.light} />
           ),
           headerRight: () => (
             <TouchableNativeFeedback
               onPress={() => {}}
-              background={TouchableNativeFeedback.Ripple('#fff', true, 15)}
-              style={{ borderRadius: 1000, marginRight: 5 }}
+              background={TouchableNativeFeedback.Ripple(theme.light, true, 15)}
+              style={{ marginRight: 5 }}
             >
               <View
                 style={{
