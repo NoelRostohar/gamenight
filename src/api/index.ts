@@ -35,7 +35,7 @@ export const games = [
         howToPlay: 'https://www.youtube.com/watch?v=Bw2Xz9wp4KI&ab_channel=ShutUp%26SitDown'
     },
     {
-        name: 'Mysterium',
+        name: 'Arkham Horror',
         id: 2,
         minPlayers: 2,
         maxPlayers: 7,
@@ -47,7 +47,7 @@ export const games = [
         howToPlay: 'https://www.youtube.com/watch?v=Bw2Xz9wp4KI&ab_channel=ShutUp%26SitDown'
     },
     {
-        name: 'Mysterium',
+        name: 'Dixit',
         id: 3,
         minPlayers: 2,
         maxPlayers: 7,
@@ -59,7 +59,7 @@ export const games = [
         howToPlay: 'https://www.youtube.com/watch?v=Bw2Xz9wp4KI&ab_channel=ShutUp%26SitDown'
     },
     {
-        name: 'Mysterium',
+        name: 'Eldritch Horror',
         id: 4,
         minPlayers: 2,
         maxPlayers: 7,
@@ -71,7 +71,7 @@ export const games = [
         howToPlay: 'https://www.youtube.com/watch?v=Bw2Xz9wp4KI&ab_channel=ShutUp%26SitDown'
     },
     {
-        name: 'Mysterium',
+        name: 'Dead Of Winter',
         id: 5,
         minPlayers: 2,
         maxPlayers: 7,

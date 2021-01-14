@@ -62,7 +62,7 @@ const MainStack = () => {
         name="AddGameNight"
         component={AddGameNight}
         options={{
-          headerTitle: 'Propse a Game Night!',
+          headerTitle: 'Propose a Game Night!',
           headerBackTitleVisible: false,
           headerBackImage: () => (
             <MaterialIcons name="close" size={24} color={theme.light} />

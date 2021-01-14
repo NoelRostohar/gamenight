@@ -7,8 +7,10 @@ import {
   TouchableOpacity,
   Switch,
   Platform,
+  Button,
 } from 'react-native';
 import { format } from 'date-fns';
+import Modal from 'react-native-modal';
 
 import Input from '../components/Input';
 import Game from '../components/Game';
@@ -17,24 +19,25 @@ import DateTimePicker, { Event } from '@react-native-community/datetimepicker';
 
 import theme from '../theme';
 import { games } from '../api';
+import { GameType } from '../types';
 
 type DateTimePickerMode = 'date' | 'time';
 
 const AddGameNight = () => {
   const [filterValue, setFilterValue] = useState<string>('');
-  const [date, setDate] = useState<Date>();
+  const [date, setDate] = useState<Date>(new Date());
   const [time, setTime] = useState<Date>(new Date());
-  const [showDateTime, setShowDateTime] = useState<boolean>(false);
+  const [showDatePicker, setShowDatePicker] = useState<boolean>(false);
   const [mode, setMode] = useState<DateTimePickerMode>('date');
 
-  const dateChange = (_: Event, selectedDate: any) => {
+  const androidDateChange = (_: Event, selectedDate: any) => {
     const currentDate = selectedDate || date;
     const currentTime = selectedDate || time;
     setMode((prev) => {
       if (prev === 'date') {
         return 'time';
       } else {
-        setShowDateTime(Platform.OS === 'ios');
+        setShowDatePicker(false);
         return 'date';
       }
     });
@@ -43,9 +46,9 @@ const AddGameNight = () => {
 
   return (
     <ScrollView style={styles.bg} contentContainerStyle={{ padding: 20 }}>
-      {showDateTime && (
+      {showDatePicker && Platform.OS === 'android' && (
         <DateTimePicker
-          onChange={dateChange}
+          onChange={androidDateChange}
           value={new Date()}
           mode={mode}
           minimumDate={new Date()}
@@ -53,6 +56,33 @@ const AddGameNight = () => {
           is24Hour
         />
       )}
+      <Modal
+        isVisible={showDatePicker && Platform.OS === 'ios'}
+        animationIn="bounceInUp"
+        useNativeDriver
+        onBackdropPress={() => {}}
+        useNativeDriverForBackdrop
+        backdropOpacity={0.95}
+      >
+        <View style={styles.iosModal}>
+          <DateTimePicker
+            onChange={(e: Event, selectedDate: any) => setDate(selectedDate)}
+            value={date}
+            mode="date"
+            minimumDate={new Date()}
+            textColor={theme.light}
+          />
+          <DateTimePicker
+            onChange={(e: Event, selectedTime: any) => setTime(selectedTime)}
+            value={time}
+            mode="time"
+            minimumDate={new Date()}
+            textColor={theme.light}
+            is24Hour
+          />
+          <Button title="Save" onPress={() => setShowDatePicker(false)} />
+        </View>
+      </Modal>
       <View style={styles.optionsRow}>
         <View style={styles.optionsContainer}>
           <Text style={styles.optionsTitle}>When?</Text>
@@ -64,7 +94,7 @@ const AddGameNight = () => {
           <TouchableOpacity>
             <Text
               style={styles.optionsButton}
-              onPress={() => setShowDateTime(true)}
+              onPress={() => setShowDatePicker(true)}
             >
               Change
             </Text>
@@ -90,26 +120,36 @@ const AddGameNight = () => {
           <Text style={styles.filterButton}>Select All</Text>
         </TouchableOpacity>
       </View>
-      {games.map((game) => {
-        return (
-          <Fragment key={game.id}>
-            <View style={styles.gameRow}>
-              <Game game={game} />
-              <Switch
-                trackColor={{ false: '#767577', true: '#81b0ff' }}
-                ios_backgroundColor="#3e3e3e"
-              />
-            </View>
-            <Divider />
-          </Fragment>
-        );
-      })}
+      {games
+        .filter((game: GameType) =>
+          !filterValue
+            ? game
+            : game.name.toLowerCase().includes(filterValue.toLowerCase())
+        )
+        .map((game: GameType) => {
+          return (
+            <Fragment key={game.id}>
+              <View style={styles.gameRow}>
+                <Game game={game} />
+                <Switch
+                  trackColor={{ false: '#767577', true: '#81b0ff' }}
+                  ios_backgroundColor="#3e3e3e"
+                />
+              </View>
+              <Divider />
+            </Fragment>
+          );
+        })}
     </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
   bg: theme.background,
+  iosModal: {
+    flex: 1,
+    justifyContent: 'center',
+  },
   optionsRow: {
     flexDirection: 'row',
     alignItems: 'center',
