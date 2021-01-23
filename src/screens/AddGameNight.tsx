@@ -1,19 +1,19 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState, Fragment, useEffect } from 'react';
 import {
   View,
   ScrollView,
   Text,
   StyleSheet,
   TouchableOpacity,
-  Switch,
   Platform,
   Button,
 } from 'react-native';
 import { format } from 'date-fns';
 import Modal from 'react-native-modal';
+import { useNavigation } from '@react-navigation/native';
 
 import Input from '../components/Input';
-import Game from '../components/Game';
+import GamePick from '../components/GamePick';
 import Divider from '../components/Divider';
 import DateTimePicker, { Event } from '@react-native-community/datetimepicker';
 
@@ -25,10 +25,13 @@ type DateTimePickerMode = 'date' | 'time';
 
 const AddGameNight = () => {
   const [filterValue, setFilterValue] = useState<string>('');
+  const [allGames, setAllGames] = useState<boolean>(false);
   const [date, setDate] = useState<Date>(new Date());
   const [time, setTime] = useState<Date>(new Date());
   const [showDatePicker, setShowDatePicker] = useState<boolean>(false);
   const [mode, setMode] = useState<DateTimePickerMode>('date');
+
+  const navigation = useNavigation();
 
   const androidDateChange = (_: Event, selectedDate: any) => {
     const currentDate = selectedDate || date;
@@ -43,6 +46,10 @@ const AddGameNight = () => {
     });
     mode === 'date' ? setDate(currentDate) : setTime(currentTime);
   };
+
+  useEffect(() => {
+    if (allGames) setAllGames(false);
+  }, [allGames]);
 
   return (
     <ScrollView style={styles.bg} contentContainerStyle={{ padding: 20 }}>
@@ -103,7 +110,7 @@ const AddGameNight = () => {
         <View style={styles.optionsContainer}>
           <Text style={styles.optionsTitle}>Where?</Text>
           <Text style={styles.optionsText}>To be determined</Text>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate('SelectPlace')}>
             <Text style={styles.optionsButton}>Change</Text>
           </TouchableOpacity>
         </View>
@@ -116,7 +123,7 @@ const AddGameNight = () => {
           icon="search"
           placeholder="Search for games.."
         />
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => setAllGames(true)}>
           <Text style={styles.filterButton}>Select All</Text>
         </TouchableOpacity>
       </View>
@@ -129,13 +136,7 @@ const AddGameNight = () => {
         .map((game: GameType) => {
           return (
             <Fragment key={game.id}>
-              <View style={styles.gameRow}>
-                <Game game={game} />
-                <Switch
-                  trackColor={{ false: '#767577', true: '#81b0ff' }}
-                  ios_backgroundColor="#3e3e3e"
-                />
-              </View>
+              <GamePick game={game} allGames={allGames} />
               <Divider />
             </Fragment>
           );
@@ -185,11 +186,6 @@ const styles = StyleSheet.create({
     textTransform: 'uppercase',
     fontSize: 14,
     marginLeft: 20,
-  },
-  gameRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
   },
 });
 

@@ -1,3 +1,21 @@
+export const places = [{
+    name: "Roly's",
+    address: 'Špansko, 4'
+},
+{
+    name: "Doc's",
+    address: 'Gajnice, 13b'
+},
+{
+    name: "Shebutin's",
+    address: 'Jarun, 13'
+},
+{
+    name: "Neš bzvz's",
+    address: 'Velebitska ul, 11'
+}
+];
+
 export const gameNight = [{
     url: 'https://cf.geekdo-images.com/wpWzYeX4dg5TgNdR9OsxAg__opengraph/img/zazejcG455L3NzsuyqYCD5EJlQg=/fit-in/1200x630/filters:strip_icc()/pic2906832.jpg',
     proposedBy: 'ColdCoffin',

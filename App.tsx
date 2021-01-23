@@ -1,14 +1,16 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { SafeAreaView } from 'react-native';
 import MainStack from './src/navigation';
 import {
   NavigationContainer,
   DefaultTheme,
   Theme,
 } from '@react-navigation/native';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
 
 import theme from './src/theme';
+import reducers from './src/store';
 
 const navTheme: Theme = {
   dark: true,
@@ -21,12 +23,16 @@ const navTheme: Theme = {
   },
 };
 
+const store = createStore(reducers);
+
 const App = () => {
   return (
-    <NavigationContainer theme={navTheme}>
-      <StatusBar style="inverted" />
-      <MainStack />
-    </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer theme={navTheme}>
+        <StatusBar style="inverted" />
+        <MainStack />
+      </NavigationContainer>
+    </Provider>
   );
 };
 

@@ -48,7 +48,7 @@ const Home = () => {
           })}
         </View>
       </ScrollView>
-      <ActionButton onPress={() => navigation.navigate('AddGameNight')} />
+      <ActionButton onPress={() => navigation.navigate('AddGameNightNav')} />
     </View>
   );
 };
