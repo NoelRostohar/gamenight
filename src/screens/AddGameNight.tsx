@@ -127,20 +127,23 @@ const AddGameNight = () => {
           <Text style={styles.filterButton}>Select All</Text>
         </TouchableOpacity>
       </View>
-      {games
-        .filter((game: GameType) =>
-          !filterValue
-            ? game
-            : game.name.toLowerCase().includes(filterValue.toLowerCase())
-        )
-        .map((game: GameType) => {
-          return (
-            <Fragment key={game.id}>
-              <GamePick game={game} allGames={allGames} />
-              <Divider />
-            </Fragment>
-          );
-        })}
+      {games.map((game: GameType) => {
+        return (
+          <View
+            style={{
+              display: !filterValue
+                ? 'flex'
+                : game.name.toLowerCase().includes(filterValue.toLowerCase())
+                ? 'flex'
+                : 'none',
+            }}
+            key={game.id}
+          >
+            <GamePick game={game} allGames={allGames} />
+            <Divider />
+          </View>
+        );
+      })}
     </ScrollView>
   );
 };

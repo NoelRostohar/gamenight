@@ -24,7 +24,7 @@ const GamePick: React.FC<GamePickProps> = ({ game, allGames }) => {
       <Switch
         trackColor={{ false: theme.faded, true: theme.primary }}
         ios_backgroundColor={theme.faded}
-        thumbColor={switchStatus ? theme.primary : theme.lightFade}
+        thumbColor={theme.lightFade}
         value={switchStatus}
         onValueChange={() => setSwitchStatus((prev) => !prev)}
       />
