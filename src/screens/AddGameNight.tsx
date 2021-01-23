@@ -28,7 +28,7 @@ type DateTimePickerMode = 'date' | 'time';
 
 const AddGameNight = () => {
   const [filterValue, setFilterValue] = useState<string>('');
-  const [allGames, setAllGames] = useState<boolean>(false);
+  const [allSelected, setAllSelected] = useState<boolean>(false);
   const [showDatePicker, setShowDatePicker] = useState<boolean>(false);
   const [mode, setMode] = useState<DateTimePickerMode>('date');
 
@@ -56,8 +56,8 @@ const AddGameNight = () => {
   };
 
   useEffect(() => {
-    if (allGames) setAllGames(false);
-  }, [allGames]);
+    if (allSelected) setAllSelected(false);
+  }, [allSelected]);
 
   return (
     <ScrollView style={styles.bg} contentContainerStyle={{ padding: 20 }}>
@@ -125,7 +125,7 @@ const AddGameNight = () => {
         <View style={styles.optionsContainer}>
           <Text style={styles.optionsTitle}>Where?</Text>
           <Text style={styles.optionsText}>
-            {!!place ? place.name : 'To be determined'}
+            {!!place.name ? place.name : 'To be determined'}
           </Text>
           <TouchableOpacity onPress={() => navigation.navigate('SelectPlace')}>
             <Text style={styles.optionsButton}>Change</Text>
@@ -140,7 +140,7 @@ const AddGameNight = () => {
           icon="search"
           placeholder="Search for games.."
         />
-        <TouchableOpacity onPress={() => setAllGames(true)}>
+        <TouchableOpacity onPress={() => setAllSelected(true)}>
           <Text style={styles.filterButton}>Select All</Text>
         </TouchableOpacity>
       </View>
@@ -156,7 +156,7 @@ const AddGameNight = () => {
             }}
             key={game._id}
           >
-            <GamePick game={game} allGames={allGames} />
+            <GamePick game={game} allSelected={allSelected} />
             <Divider />
           </View>
         );

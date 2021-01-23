@@ -3,6 +3,7 @@ import {
   GameNightState,
   GameNightActionTypes,
 } from './types';
+import { GameType } from '../../types';
 
 const initialState: GameNightState = {
   games: [],
@@ -35,10 +36,12 @@ const GameNightReducer = (
         date: action.date,
       };
     case GameNightActionTypes.AddGame:
-      return {
-        ...state,
-        games: [...state.games, action.game],
-      };
+      return !state.games.some((game: GameType) => game._id === action.game._id)
+        ? {
+            ...state,
+            games: [...state.games, action.game],
+          }
+        : state;
     case GameNightActionTypes.RemoveGame:
       return {
         ...state,

@@ -1,28 +1,31 @@
 import React, { useState, useEffect } from 'react';
 import { View, Switch, StyleSheet } from 'react-native';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Game from './Game';
 
 import { addGame, removeGame } from '../store/GameNight/actions';
-import {} from '../store/GameNight/types';
 
 import theme from '../theme';
 import { GameType } from '../types';
+import { GlobalState } from '../store';
 
 interface GamePickProps {
   game: GameType;
-  allGames: boolean;
+  allSelected: boolean;
 }
 
-const GamePick: React.FC<GamePickProps> = ({ game, allGames }) => {
-  const [switchStatus, setSwitchStatus] = useState<boolean>(false);
-
+const GamePick: React.FC<GamePickProps> = ({ game, allSelected }) => {
   const dispatch = useDispatch();
+  const { games } = useSelector((state: GlobalState) => state.gameNight);
+
+  const [switchStatus, setSwitchStatus] = useState<boolean>(
+    games.some((stateGame: GameType) => stateGame._id === game._id)
+  );
 
   useEffect(() => {
-    if (allGames) setSwitchStatus(true);
-  }, [allGames]);
+    if (allSelected) setSwitchStatus(true);
+  }, [allSelected]);
 
   useEffect(() => {
     switchStatus ? dispatch(addGame(game)) : dispatch(removeGame(game._id));
