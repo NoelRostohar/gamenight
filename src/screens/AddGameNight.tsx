@@ -1,4 +1,4 @@
-import React, { useState, Fragment, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   View,
   ScrollView,
@@ -11,6 +11,7 @@ import {
 import { format } from 'date-fns';
 import Modal from 'react-native-modal';
 import { useNavigation } from '@react-navigation/native';
+import { useSelector, useDispatch } from 'react-redux';
 
 import Input from '../components/Input';
 import GamePick from '../components/GamePick';
@@ -20,18 +21,21 @@ import DateTimePicker, { Event } from '@react-native-community/datetimepicker';
 import theme from '../theme';
 import { games } from '../api';
 import { GameType } from '../types';
+import { GlobalState } from '../store';
+import { changeDate, changeTime } from '../store/GameNight/actions';
 
 type DateTimePickerMode = 'date' | 'time';
 
 const AddGameNight = () => {
   const [filterValue, setFilterValue] = useState<string>('');
   const [allGames, setAllGames] = useState<boolean>(false);
-  const [date, setDate] = useState<Date>(new Date());
-  const [time, setTime] = useState<Date>(new Date());
   const [showDatePicker, setShowDatePicker] = useState<boolean>(false);
   const [mode, setMode] = useState<DateTimePickerMode>('date');
 
   const navigation = useNavigation();
+  const dispatch = useDispatch();
+  const { date, time } = useSelector((state: GlobalState) => state.gameNight);
+  const gameNight = useSelector((state: GlobalState) => state.gameNight);
 
   const androidDateChange = (_: Event, selectedDate: any) => {
     const currentDate = selectedDate || date;
@@ -44,7 +48,9 @@ const AddGameNight = () => {
         return 'date';
       }
     });
-    mode === 'date' ? setDate(currentDate) : setTime(currentTime);
+    mode === 'date'
+      ? dispatch(changeDate(currentDate))
+      : dispatch(changeTime(currentTime));
   };
 
   useEffect(() => {
@@ -53,6 +59,9 @@ const AddGameNight = () => {
 
   return (
     <ScrollView style={styles.bg} contentContainerStyle={{ padding: 20 }}>
+      <Text style={{ color: 'white' }}>
+        {JSON.stringify(gameNight, null, 2)}
+      </Text>
       {showDatePicker && Platform.OS === 'android' && (
         <DateTimePicker
           onChange={androidDateChange}
@@ -73,14 +82,18 @@ const AddGameNight = () => {
       >
         <View style={styles.iosModal}>
           <DateTimePicker
-            onChange={(e: Event, selectedDate: any) => setDate(selectedDate)}
+            onChange={(e: Event, selectedDate: any) =>
+              dispatch(changeDate(selectedDate))
+            }
             value={date}
             mode="date"
             minimumDate={new Date()}
             textColor={theme.light}
           />
           <DateTimePicker
-            onChange={(e: Event, selectedTime: any) => setTime(selectedTime)}
+            onChange={(e: Event, selectedTime: any) =>
+              dispatch(changeTime(selectedTime))
+            }
             value={time}
             mode="time"
             minimumDate={new Date()}

@@ -11,8 +11,8 @@ export enum GameNightActionTypes {
 export interface GameNightState {
   games: GameType[];
   place: Place;
-  date: string;
-  time: string;
+  date: Date;
+  time: Date;
 }
 
 export interface ChangePlaceAction {
@@ -29,11 +29,11 @@ export interface RemoveGameAction {
 }
 export interface ChangeDateAction {
   type: GameNightActionTypes.ChangeDate;
-  date: string;
+  date: Date;
 }
 export interface ChangeTimeAction {
   type: GameNightActionTypes.ChangeTime;
-  time: string;
+  time: Date;
 }
 
 export type GameNightActions =

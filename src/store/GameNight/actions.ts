@@ -22,14 +22,14 @@ export const removeGame = (_id: string | number): GameNightActions => {
   };
 };
 
-export const changeDate = (date: string): GameNightActions => {
+export const changeDate = (date: Date): GameNightActions => {
   return {
     type: GameNightActionTypes.ChangeDate,
     date,
   };
 };
 
-export const changeTime = (time: string): GameNightActions => {
+export const changeTime = (time: Date): GameNightActions => {
   return {
     type: GameNightActionTypes.ChangeTime,
     time,

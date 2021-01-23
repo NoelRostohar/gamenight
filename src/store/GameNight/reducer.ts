@@ -6,8 +6,8 @@ import {
 
 const initialState: GameNightState = {
   games: [],
-  date: '',
-  time: '',
+  date: new Date(),
+  time: new Date(),
   place: {
     name: '',
     address: '',

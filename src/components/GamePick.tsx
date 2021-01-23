@@ -20,9 +20,13 @@ const GamePick: React.FC<GamePickProps> = ({ game, allGames }) => {
 
   const dispatch = useDispatch();
 
-  useEffect((): void => {
+  useEffect(() => {
     if (allGames) setSwitchStatus(true);
   }, [allGames]);
+
+  useEffect(() => {
+    switchStatus ? dispatch(addGame(game)) : dispatch(removeGame(game._id));
+  }, [switchStatus]);
 
   return (
     <View style={styles.gameRow}>
@@ -32,12 +36,7 @@ const GamePick: React.FC<GamePickProps> = ({ game, allGames }) => {
         ios_backgroundColor={theme.faded}
         thumbColor={theme.lightFade}
         value={switchStatus}
-        onValueChange={() =>
-          setSwitchStatus((prev) => {
-            prev ? dispatch(removeGame(game._id)) : dispatch(addGame(game));
-            return !prev;
-          })
-        }
+        onValueChange={() => setSwitchStatus((prev) => !prev)}
       />
     </View>
   );
