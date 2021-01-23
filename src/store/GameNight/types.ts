@@ -2,12 +2,13 @@ import { GameType, Place } from '../../types';
 
 export enum GameNightActionTypes {
   ChangePlace = 'ChangePlace',
-  ChangeGame = 'ChangeGame',
+  AddGame = 'AddGame',
+  RemoveGame = 'RemoveGame',
   ChangeDate = 'ChangeDate',
   ChangeTime = 'ChangeTime',
 }
 
-export interface GameNight {
+export interface GameNightState {
   games: GameType[];
   place: Place;
   date: string;
@@ -16,23 +17,28 @@ export interface GameNight {
 
 export interface ChangePlaceAction {
   type: GameNightActionTypes.ChangePlace;
-  payload: Place;
+  place: Place;
 }
-export interface ChangeGameAction {
-  type: GameNightActionTypes.ChangeGame;
-  payload: GameType;
+export interface AddGameAction {
+  type: GameNightActionTypes.AddGame;
+  game: GameType;
+}
+export interface RemoveGameAction {
+  type: GameNightActionTypes.RemoveGame;
+  _id: string;
 }
 export interface ChangeDateAction {
   type: GameNightActionTypes.ChangeDate;
-  payload: string;
+  date: string;
 }
 export interface ChangeTimeAction {
   type: GameNightActionTypes.ChangeTime;
-  payload: string;
+  time: string;
 }
 
 export type GameNightActions =
   | ChangePlaceAction
-  | ChangeGameAction
+  | AddGameAction
+  | RemoveGameAction
   | ChangeDateAction
   | ChangeTimeAction;

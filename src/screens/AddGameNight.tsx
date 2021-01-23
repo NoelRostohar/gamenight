@@ -137,7 +137,7 @@ const AddGameNight = () => {
                 ? 'flex'
                 : 'none',
             }}
-            key={game.id}
+            key={game._id}
           >
             <GamePick game={game} allGames={allGames} />
             <Divider />

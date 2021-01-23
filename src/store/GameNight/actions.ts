@@ -1,47 +1,43 @@
 import {
-  ChangeGameAction,
+  AddGameAction,
+  RemoveGameAction,
   ChangeDateAction,
   ChangePlaceAction,
   ChangeTimeAction,
   GameNightActions,
+  GameNightActionTypes,
 } from './types';
 
-export const changePlace = ({
-  type,
-  payload,
-}: ChangePlaceAction): GameNightActions => {
+export const changePlace = ({ place }: ChangePlaceAction): GameNightActions => {
   return {
-    type,
-    payload,
+    type: GameNightActionTypes.ChangePlace,
+    place,
   };
 };
 
-export const changeGame = ({
-  type,
-  payload,
-}: ChangeGameAction): GameNightActions => {
+export const addGame = ({ game }: AddGameAction): GameNightActions => {
   return {
-    type,
-    payload,
+    type: GameNightActionTypes.AddGame,
+    game,
+  };
+};
+export const removeGame = ({ _id }: RemoveGameAction): GameNightActions => {
+  return {
+    type: GameNightActionTypes.RemoveGame,
+    _id,
   };
 };
 
-export const changeDate = ({
-  type,
-  payload,
-}: ChangeDateAction): GameNightActions => {
+export const changeDate = ({ date }: ChangeDateAction): GameNightActions => {
   return {
-    type,
-    payload,
+    type: GameNightActionTypes.ChangeDate,
+    date,
   };
 };
 
-export const changeTime = ({
-  type,
-  payload,
-}: ChangeTimeAction): GameNightActions => {
+export const changeTime = ({ time }: ChangeTimeAction): GameNightActions => {
   return {
-    type,
-    payload,
+    type: GameNightActionTypes.ChangeTime,
+    time,
   };
 };
