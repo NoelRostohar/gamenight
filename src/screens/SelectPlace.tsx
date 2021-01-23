@@ -6,18 +6,29 @@ import {
   StyleSheet,
   View,
 } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { useDispatch } from 'react-redux';
 
 import Divider from '../components/Divider';
 
 import { places } from '../api';
 import theme from '../theme';
+import { changePlace } from '../store/GameNight/actions';
 
 const SelectPlace = () => {
+  const navigation = useNavigation();
+  const dispatch = useDispatch();
+
   return (
     <ScrollView style={styles.bg} contentContainerStyle={{ padding: 20 }}>
       {places.map(({ name, address }: { name: string; address: string }) => (
         <Fragment key={name}>
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              dispatch(changePlace({ name, address }));
+              navigation.goBack();
+            }}
+          >
             <View style={styles.container}>
               <Text style={styles.name}>{name}</Text>
               <Text style={styles.address}>{address}</Text>

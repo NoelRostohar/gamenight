@@ -34,7 +34,9 @@ const AddGameNight = () => {
 
   const navigation = useNavigation();
   const dispatch = useDispatch();
-  const { date, time } = useSelector((state: GlobalState) => state.gameNight);
+  const { date, time, place } = useSelector(
+    (state: GlobalState) => state.gameNight
+  );
   const gameNight = useSelector((state: GlobalState) => state.gameNight);
 
   const androidDateChange = (_: Event, selectedDate: any) => {
@@ -122,7 +124,9 @@ const AddGameNight = () => {
         </View>
         <View style={styles.optionsContainer}>
           <Text style={styles.optionsTitle}>Where?</Text>
-          <Text style={styles.optionsText}>To be determined</Text>
+          <Text style={styles.optionsText}>
+            {!!place ? place.name : 'To be determined'}
+          </Text>
           <TouchableOpacity onPress={() => navigation.navigate('SelectPlace')}>
             <Text style={styles.optionsButton}>Change</Text>
           </TouchableOpacity>
