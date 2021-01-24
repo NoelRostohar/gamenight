@@ -37,7 +37,6 @@ const AddGameNight = () => {
   const { date, time, place } = useSelector(
     (state: GlobalState) => state.gameNight
   );
-  const gameNight = useSelector((state: GlobalState) => state.gameNight);
 
   const androidDateChange = (_: Event, selectedDate: any) => {
     const currentDate = selectedDate || date;
@@ -61,9 +60,6 @@ const AddGameNight = () => {
 
   return (
     <ScrollView style={styles.bg} contentContainerStyle={{ padding: 20 }}>
-      <Text style={{ color: 'white' }}>
-        {JSON.stringify(gameNight, null, 2)}
-      </Text>
       {showDatePicker && Platform.OS === 'android' && (
         <DateTimePicker
           onChange={androidDateChange}
@@ -110,7 +106,7 @@ const AddGameNight = () => {
           <Text style={styles.optionsTitle}>When?</Text>
           <Text style={styles.optionsText}>
             {!!date
-              ? `${format(date, 'dd/MM/yy')}, ${format(time, 'kk:mm')}`
+              ? `${format(date, 'dd/MM')}, ${format(time, 'kk:mm')}`
               : 'No date selected.'}
           </Text>
           <TouchableOpacity>

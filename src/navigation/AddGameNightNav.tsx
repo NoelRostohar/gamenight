@@ -1,15 +1,21 @@
-import React from 'react';
-import { TouchableNativeFeedback, View } from 'react-native';
+import React, { useCallback } from 'react';
+import { TouchableNativeFeedback, View, Alert } from 'react-native';
 import {
   createStackNavigator,
   CardStyleInterpolators,
 } from '@react-navigation/stack';
+import { useNavigation } from '@react-navigation/native';
 import { MaterialIcons } from '@expo/vector-icons';
+import { useSelector, useDispatch } from 'react-redux';
+import { format } from 'date-fns';
 
 import AddGameNight from '../screens/AddGameNight';
 import SelectPlace from '../screens/SelectPlace';
 
 import theme from '../theme';
+import { gameNight } from '../api';
+import { GlobalState } from '../store';
+import { clearGameNight } from '../store/GameNight/actions';
 
 type AddGameNightParamList = {
   AddGameNight: undefined;
@@ -19,6 +25,27 @@ type AddGameNightParamList = {
 const Stack = createStackNavigator<AddGameNightParamList>();
 
 const AddGameNightStack = () => {
+  const { date, games, place } = useSelector(
+    (state: GlobalState) => state.gameNight
+  );
+
+  const dispatch = useDispatch();
+  const navigation = useNavigation();
+
+  const addGameNight = useCallback((): void => {
+    const dateToString = format(date, 'dd/MM');
+    const url = games[0].url;
+    gameNight.push({
+      _id: 5,
+      date: dateToString,
+      place: place.name,
+      proposedBy: 'Za sad ja',
+      url,
+    });
+    dispatch(clearGameNight());
+    navigation.navigate('Home');
+  }, [date, games, place]);
+
   return (
     <Stack.Navigator
       screenOptions={{
@@ -40,7 +67,11 @@ const AddGameNightStack = () => {
           ),
           headerRight: () => (
             <TouchableNativeFeedback
-              onPress={() => {}}
+              onPress={() =>
+                games.length < 1
+                  ? Alert.alert('Warning', 'Please select at least one game.')
+                  : addGameNight()
+              }
               background={TouchableNativeFeedback.Ripple(theme.light, true, 15)}
               style={{ marginRight: 5 }}
             >

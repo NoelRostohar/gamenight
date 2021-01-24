@@ -6,6 +6,7 @@ export enum GameNightActionTypes {
   RemoveGame = 'RemoveGame',
   ChangeDate = 'ChangeDate',
   ChangeTime = 'ChangeTime',
+  ClearGameNight = 'ClearGameNight',
 }
 
 export interface GameNightState {
@@ -35,10 +36,14 @@ export interface ChangeTimeAction {
   type: GameNightActionTypes.ChangeTime;
   time: Date;
 }
+export interface ClearGameNightAction {
+  type: GameNightActionTypes.ClearGameNight;
+}
 
 export type GameNightActions =
   | ChangePlaceAction
   | AddGameAction
   | RemoveGameAction
   | ChangeDateAction
-  | ChangeTimeAction;
+  | ChangeTimeAction
+  | ClearGameNightAction;

@@ -47,6 +47,8 @@ const GameNightReducer = (
         ...state,
         games: state.games.filter((game) => game._id !== action._id),
       };
+    case GameNightActionTypes.ClearGameNight:
+      return initialState;
     default:
       return state;
   }

@@ -35,3 +35,9 @@ export const changeTime = (time: Date): GameNightActions => {
     time,
   };
 };
+
+export const clearGameNight = (): GameNightActions => {
+  return {
+    type: GameNightActionTypes.ClearGameNight,
+  };
+};
