@@ -19,7 +19,6 @@ import Divider from '../components/Divider';
 import DateTimePicker, { Event } from '@react-native-community/datetimepicker';
 
 import theme from '../theme';
-import { games } from '../api';
 import { GameType } from '../types';
 import { GlobalState } from '../store';
 import { changeDate, changeTime } from '../store/GameNight/actions';
@@ -37,6 +36,7 @@ const AddGameNight = () => {
   const { date, time, place } = useSelector(
     (state: GlobalState) => state.gameNight
   );
+  const { games } = useSelector((state: GlobalState) => state.games);
 
   const androidDateChange = (_: Event, selectedDate: any) => {
     const currentDate = selectedDate || date;
@@ -150,7 +150,7 @@ const AddGameNight = () => {
                 ? 'flex'
                 : 'none',
             }}
-            key={game._id}
+            key={game.id}
           >
             <GamePick game={game} allSelected={allSelected} />
             <Divider />

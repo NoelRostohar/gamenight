@@ -15,7 +15,7 @@ export interface Theme {
 
 export interface GameType {
   name: string;
-  _id: string | number;
+  id: string | number;
   minPlayers: number | string;
   maxPlayers: number | string;
   owner: string;

@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import { View, StyleSheet, Text, ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { useSelector } from 'react-redux';
 
 import ActionButton from '../components/ActionButton';
 import GameNight, { CARD_WIDTH } from '../components/GameNight';
@@ -8,12 +9,15 @@ import Game from '../components/Game';
 import Divider from '../components/Divider';
 
 import theme from '../theme';
-import { gameNight, games } from '../api';
+import { gameNight } from '../api';
+import { GameType } from '../types';
+import { GlobalState } from '../store';
 
 //TODO: Might need refactor to SectionList
 
 const Home = () => {
   const navigation = useNavigation();
+  const { games } = useSelector((state: GlobalState) => state.games);
 
   return (
     <View style={styles.bg}>
@@ -38,9 +42,9 @@ const Home = () => {
         </ScrollView>
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>All available games</Text>
-          {games.map((game) => {
+          {games.map((game: GameType) => {
             return (
-              <Fragment key={game._id}>
+              <Fragment key={game.id}>
                 <Game game={game} />
                 <Divider />
               </Fragment>
