@@ -25,6 +25,7 @@ const GameNight = () => {
           size={16}
           text="Roly's plejs"
           color={theme.light}
+          subtext={'Ul. Vilima Korajca 4'}
         />
       </View>
       <View style={styles.section}>

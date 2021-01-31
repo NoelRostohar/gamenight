@@ -10,32 +10,43 @@ interface IconTextProps {
   text: string;
   size: number;
   color?: string;
+  subtext?: string;
 }
 
-const IconText: React.FC<IconTextProps> = ({ icon, text, size, color }) => {
+const IconText: React.FC<IconTextProps> = ({
+  icon,
+  text,
+  size,
+  color,
+  subtext,
+}) => {
   const styles = StyleSheet.create({
     row: {
       flexDirection: 'row',
-      alignItems: 'center',
+      alignItems: subtext ? 'baseline' : 'center',
     },
-    icon: {
-      marginRight: 3,
+    iconContainer: {
+      minWidth: size + 6,
     },
     text: {
       color: color || theme.faded,
       fontSize: size,
     },
+    subtext: {
+      color: theme.faded,
+      fontSize: 12,
+    },
   });
 
   return (
     <View style={styles.row}>
-      <MaterialIcons
-        style={styles.icon}
-        name={icon}
-        size={size}
-        color={color || theme.faded}
-      />
-      <Text style={styles.text}>{text}</Text>
+      <View style={styles.iconContainer}>
+        <MaterialIcons name={icon} size={size} color={color || theme.faded} />
+      </View>
+      <View>
+        <Text style={styles.text}>{text}</Text>
+        {subtext && <Text style={styles.subtext}>{subtext}</Text>}
+      </View>
     </View>
   );
 };
