@@ -1,9 +1,10 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-import IconText from '../components/IconText';
+import IconText from '../../components/IconText';
+import ParticipantCard from '../../components/ParticipantCard';
 
-import theme from '../theme';
+import theme from '../../theme';
 
 const GameNight = () => {
   return (
@@ -31,6 +32,7 @@ const GameNight = () => {
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>Participants</Text>
       </View>
+      <ParticipantCard />
     </View>
   );
 };
@@ -45,7 +47,8 @@ const styles = StyleSheet.create({
     marginVertical: 10,
   },
   section: {
-    paddingVertical: 20,
+    paddingTop: 20,
+    paddingBottom: 10,
   },
   sectionTitle: {
     color: theme.faded,

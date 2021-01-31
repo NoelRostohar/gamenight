@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TextInput, StyleSheet } from 'react-native';
+import { View, TextInput, StyleSheet } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 
 import theme from '../theme';
@@ -9,17 +9,19 @@ interface InputProps {
   icon: Icon;
   [rest: string]: any;
   flexSize: number;
+  button?: React.ReactNode;
 }
 
-const Input: React.FC<InputProps> = ({ icon, flexSize, ...rest }) => {
+const Input: React.FC<InputProps> = ({ icon, flexSize, button, ...rest }) => {
   return (
     <View style={[styles.root, { flex: flexSize }]}>
-      <MaterialIcons name={icon} size={24} color={theme.faded} />
+      <MaterialIcons name={icon} size={20} color={theme.faded} />
       <TextInput
         style={styles.textInput}
         {...rest}
         placeholderTextColor={theme.faded}
       />
+      {button && button}
     </View>
   );
 };

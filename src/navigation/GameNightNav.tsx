@@ -1,10 +1,12 @@
 import React from 'react';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 
-import GameNight from '../screens/GameNight';
+import Overview from '../screens/GameNight/Overview';
+import Chat from '../screens/GameNight/Chat';
 
 type GameNightParamList = {
   Overview: undefined;
+  Chat: undefined;
 };
 
 const Tab = createMaterialTopTabNavigator<GameNightParamList>();
@@ -16,7 +18,8 @@ const GameNightNav = () => {
         labelStyle: { textTransform: 'none' },
       }}
     >
-      <Tab.Screen name="Overview" component={GameNight} />
+      <Tab.Screen name="Overview" component={Overview} />
+      <Tab.Screen name="Chat" component={Chat} />
     </Tab.Navigator>
   );
 };
