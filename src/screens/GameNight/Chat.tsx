@@ -5,18 +5,24 @@ import {
   ScrollView,
   StyleSheet,
   TouchableOpacity,
+  FlatList,
 } from 'react-native';
 
 import Input from '../../components/Input';
+import ChatBubble from '../../components/ChatBubble';
 
 import theme from '../../theme';
 
 const Chat = () => {
   return (
     <>
-      <ScrollView>
-        <Text></Text>
-      </ScrollView>
+      <FlatList
+        data={[1, 2, 3, 4]}
+        renderItem={() => <ChatBubble />}
+        keyExtractor={(item) => item.toString()}
+        contentContainerStyle={{ paddingHorizontal: 20 }}
+        inverted
+      />
       <View style={styles.inputContainer}>
         <Input
           icon="send"
@@ -35,7 +41,8 @@ const Chat = () => {
 
 const styles = StyleSheet.create({
   inputContainer: {
-    padding: 20,
+    paddingHorizontal: 20,
+    paddingVertical: 10,
     alignItems: 'center',
     flexDirection: 'row',
   },
