@@ -4,7 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 import { useSelector } from 'react-redux';
 
 import ActionButton from '../components/ActionButton';
-import GameNight, { CARD_WIDTH } from '../components/GameNight';
+import GameNight, { CARD_WIDTH } from '../components/GameNightCard';
 import Game from '../components/Game';
 import Divider from '../components/Divider';
 

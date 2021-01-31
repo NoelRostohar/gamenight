@@ -5,8 +5,10 @@ import {
   Text,
   Dimensions,
   StyleSheet,
+  TouchableOpacity,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
+import { useNavigation } from '@react-navigation/native';
 
 import IconText from './IconText';
 
@@ -24,29 +26,33 @@ interface GameNightProps {
 const CARD_HEIGHT: number = Dimensions.get('window').height / 1.9;
 export const CARD_WIDTH: number = CARD_HEIGHT * 0.6;
 
-const GameNight: React.FC<GameNightProps> = ({
+const GameNightCard: React.FC<GameNightProps> = ({
   gameNight: { proposedBy, date, place, url },
 }) => {
+  const navigation = useNavigation();
+
   return (
-    <View style={styles.root}>
-      <ImageBackground style={styles.img} source={{ uri: url }}>
-        <LinearGradient
-          colors={['transparent', 'rgba(0,0,0,1)']}
-          style={styles.gradient}
-        >
-          <View style={styles.infoContainer}>
-            <Text style={styles.proposed}>Proposed by</Text>
-            <Text style={styles.user}>{proposedBy}</Text>
-            <View style={[styles.row, styles.infoRow]}>
-              <View style={{ marginRight: 10 }}>
-                <IconText icon="event" size={12} text={date} />
+    <TouchableOpacity onPress={() => navigation.navigate('GameNightNav')}>
+      <View style={styles.root}>
+        <ImageBackground style={styles.img} source={{ uri: url }}>
+          <LinearGradient
+            colors={['transparent', 'rgba(0,0,0,1)']}
+            style={styles.gradient}
+          >
+            <View style={styles.infoContainer}>
+              <Text style={styles.proposed}>Proposed by</Text>
+              <Text style={styles.user}>{proposedBy}</Text>
+              <View style={[styles.row, styles.infoRow]}>
+                <View style={{ marginRight: 10 }}>
+                  <IconText icon="event" size={12} text={date} />
+                </View>
+                <IconText icon="location-on" size={12} text={place} />
               </View>
-              <IconText icon="location-on" size={12} text={place} />
             </View>
-          </View>
-        </LinearGradient>
-      </ImageBackground>
-    </View>
+          </LinearGradient>
+        </ImageBackground>
+      </View>
+    </TouchableOpacity>
   );
 };
 
@@ -88,4 +94,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default GameNight;
+export default GameNightCard;

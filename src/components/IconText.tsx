@@ -9,9 +9,10 @@ interface IconTextProps {
   icon: Icon;
   text: string;
   size: number;
+  color?: string;
 }
 
-const IconText: React.FC<IconTextProps> = ({ icon, text, size }) => {
+const IconText: React.FC<IconTextProps> = ({ icon, text, size, color }) => {
   const styles = StyleSheet.create({
     row: {
       flexDirection: 'row',
@@ -21,7 +22,7 @@ const IconText: React.FC<IconTextProps> = ({ icon, text, size }) => {
       marginRight: 3,
     },
     text: {
-      color: theme.faded,
+      color: color || theme.faded,
       fontSize: size,
     },
   });
@@ -32,7 +33,7 @@ const IconText: React.FC<IconTextProps> = ({ icon, text, size }) => {
         style={styles.icon}
         name={icon}
         size={size}
-        color={theme.faded}
+        color={color || theme.faded}
       />
       <Text style={styles.text}>{text}</Text>
     </View>
