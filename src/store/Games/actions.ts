@@ -17,7 +17,7 @@ export const getGames = (): ThunkAction<
 > => {
   return async (dispatch) => {
     try {
-      const res = await axios.get('http://192.168.1.6:3000');
+      const res = await axios.get('http://192.168.1.6:3000/api/games');
       dispatch(storeGames({ games: res.data }));
     } catch (err) {
       console.log(err);
