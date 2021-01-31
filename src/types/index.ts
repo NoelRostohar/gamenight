@@ -13,22 +13,34 @@ export interface Theme {
   };
 }
 
+export interface Genre {
+  id: number;
+  name: string;
+}
+
 export interface GameType {
   name: string;
-  id: string | number;
+  id: number;
   minPlayers: number | string;
   maxPlayers: number | string;
   owner: string;
   description: string;
   url: string;
   playtime: string;
-  genres: string[];
+  genres: Genre[];
   howToPlay: string;
 }
 
 export interface Place {
   name: string;
   address: string;
+}
+
+export interface GenreColor {
+  [key: string]: {
+    background: string;
+    text: string;
+  };
 }
 
 export type Icon =

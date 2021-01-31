@@ -18,6 +18,8 @@ import IconText from '../components/IconText';
 
 import theme from '../theme';
 import { MainStackParamList } from '../navigation';
+import { Genre } from '../types';
+import genreColors from '../utils/genreColors';
 
 type GameDetailsRouteProp = RouteProp<MainStackParamList, 'GameDetails'>;
 
@@ -39,6 +41,7 @@ const GameDetails: React.FC<GameDetailsProps> = ({
       playtime,
       description,
       howToPlay,
+      genres,
     },
   },
 }) => {
@@ -88,6 +91,23 @@ const GameDetails: React.FC<GameDetailsProps> = ({
           }}
         >
           <Text style={styles.name}>{name}</Text>
+          <View style={styles.genreContainer}>
+            {genres.map((genre: Genre) => {
+              return (
+                <View
+                  style={[
+                    styles.genreRoot,
+                    { backgroundColor: genreColors[genre.name].background },
+                  ]}
+                  key={genre.id}
+                >
+                  <Text style={{ color: genreColors[genre.name].text }}>
+                    {genre.name}
+                  </Text>
+                </View>
+              );
+            })}
+          </View>
           <View style={styles.iconRow}>
             <View style={styles.iconSpacing}>
               <IconText
@@ -150,10 +170,23 @@ const styles = StyleSheet.create({
     color: theme.light,
     fontWeight: 'bold',
   },
+  genreContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginVertical: 15,
+  },
+  genreRoot: {
+    paddingHorizontal: 15,
+    paddingVertical: 5,
+    alignItems: 'center',
+    justifyContent: 'center',
+    textAlign: 'center',
+    borderRadius: 100,
+    marginRight: 5,
+  },
   iconRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginTop: 15,
   },
   iconSpacing: {
     marginRight: 20,

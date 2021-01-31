@@ -44,14 +44,7 @@ const ChatBubble = () => {
           18:35
         </Text>
       </View>
-      <Text>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi est
-        reprehenderit dolores sint quisquam voluptates. Laborum nostrum vel,
-        pariatur velit repellat saepe similique beatae! Fugit dolor pariatur
-        veritatis nisi perspiciatis fugiat animi sed, nesciunt eum at vel.
-        Iusto, quod quia obcaecati vero, modi praesentium earum dicta
-        dignissimos nihil sit officiis?
-      </Text>
+      <Text>aba</Text>
     </View>
   );
 };

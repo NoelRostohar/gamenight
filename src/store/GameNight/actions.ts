@@ -15,10 +15,10 @@ export const addGame = (game: GameType): GameNightActions => {
     game,
   };
 };
-export const removeGame = (_id: string | number): GameNightActions => {
+export const removeGame = (id: string | number): GameNightActions => {
   return {
     type: GameNightActionTypes.RemoveGame,
-    _id,
+    id,
   };
 };
 

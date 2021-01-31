@@ -36,7 +36,7 @@ const GameNightReducer = (
         date: action.date,
       };
     case GameNightActionTypes.AddGame:
-      return !state.games.some((game: GameType) => game._id === action.game._id)
+      return !state.games.some((game: GameType) => game.id === action.game.id)
         ? {
             ...state,
             games: [...state.games, action.game],
@@ -45,7 +45,7 @@ const GameNightReducer = (
     case GameNightActionTypes.RemoveGame:
       return {
         ...state,
-        games: state.games.filter((game) => game._id !== action._id),
+        games: state.games.filter((game) => game.id !== action.id),
       };
     case GameNightActionTypes.ClearGameNight:
       return initialState;

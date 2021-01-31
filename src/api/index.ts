@@ -24,7 +24,7 @@ export const gameNight = [
     proposedBy: 'ColdCoffin',
     date: '16/01',
     place: "Roli's plejs",
-    _id: 1,
+    id: 1,
   },
   {
     url:
@@ -32,7 +32,7 @@ export const gameNight = [
     proposedBy: 'supermavrin',
     date: '02/02',
     place: "doc's",
-    _id: 2,
+    id: 2,
   },
   {
     url:
@@ -40,19 +40,19 @@ export const gameNight = [
     proposedBy: 'ColdCoffin',
     date: '16/01',
     place: "Roli's plejs",
-    _id: 3,
+    id: 3,
   },
 ];
 
 export const games = [
   {
     name: 'Mysterium',
-    _id: 1,
+    id: 1,
     minPlayers: 2,
     maxPlayers: 7,
     owner: 'Roly',
     description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed blandit nec purus in rhoncus. Phasellus ultricies hendrerit quam, quis rhoncus dui facilisis nec. Nulla ultricies magna vitae sem fermentum accumsan. Nullam lorem est, finibus in vestibulum nec, pharetra a ipsum. Aliquam dictum dui sed lectus pharetra, in varius nunc venenatis. Vestibulum a massa quis diam tempor sodales. Proin elit ipsum, euismod sed risus vel, consectetur cursus tellus. Phasellus ullamcorper odio ornare purus dapibus tristique. Suspendisse euismod tinc_idunt mauris, ac sagittis tellus molestie ac. Donec interdum, lorem a consequat consequat, turpis metus iaculis justo, at lobortis augue lorem ut sem. Mauris a tortor placerat, maximus justo _id, scelerisque ligula. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed blandit nec purus in rhoncus. Phasellus ultricies hendrerit quam, quis rhoncus dui facilisis nec. Nulla ultricies magna vitae sem fermentum accumsan. Nullam lorem est, finibus in vestibulum nec, pharetra a ipsum. Aliquam dictum dui sed lectus pharetra, in varius nunc venenatis. Vestibulum a massa quis diam tempor sodales. Proin elit ipsum, euismod sed risus vel, consectetur cursus tellus. Phasellus ullamcorper odio ornare purus dapibus tristique. Suspendisse euismod tinc_idunt mauris, ac sagittis tellus molestie ac. Donec interdum, lorem a consequat consequat, turpis metus iaculis justo, at lobortis augue lorem ut sem. Mauris a tortor placerat, maximus justo _id, scelerisque ligula. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed blandit nec purus in rhoncus. Phasellus ultricies hendrerit quam, quis rhoncus dui facilisis nec. Nulla ultricies magna vitae sem fermentum accumsan. Nullam lorem est, finibus in vestibulum nec, pharetra a ipsum. Aliquam dictum dui sed lectus pharetra, in varius nunc venenatis. Vestibulum a massa quis diam tempor sodales. Proin elit ipsum, euismod sed risus vel, consectetur cursus tellus. Phasellus ullamcorper odio ornare purus dapibus tristique. Suspendisse euismod tinc_idunt mauris, ac sagittis tellus molestie ac. Donec interdum, lorem a consequat consequat, turpis metus iaculis justo, at lobortis augue lorem ut sem. Mauris a tortor placerat, maximus justo _id, scelerisque ligula. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed blandit nec purus in rhoncus. Phasellus ultricies hendrerit quam, quis rhoncus dui facilisis nec. Nulla ultricies magna vitae sem fermentum accumsan. Nullam lorem est, finibus in vestibulum nec, pharetra a ipsum. Aliquam dictum dui sed lectus pharetra, in varius nunc venenatis. Vestibulum a massa quis diam tempor sodales. Proin elit ipsum, euismod sed risus vel, consectetur cursus tellus. Phasellus ullamcorper odio ornare purus dapibus tristique. Suspendisse euismod tinc_idunt mauris, ac sagittis tellus molestie ac. Donec interdum, lorem a consequat consequat, turpis metus iaculis justo, at lobortis augue lorem ut sem. Mauris a tortor placerat, maximus justo _id, scelerisque ligula. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed blandit nec purus in rhoncus. Phasellus ultricies hendrerit quam, quis rhoncus dui facilisis nec. Nulla ultricies magna vitae sem fermentum accumsan. Nullam lorem est, finibus in vestibulum nec, pharetra a ipsum. Aliquam dictum dui sed lectus pharetra, in varius nunc venenatis. Vestibulum a massa quis diam tempor sodales. Proin elit ipsum, euismod sed risus vel, consectetur cursus tellus. Phasellus ullamcorper odio ornare purus dapibus tristique. Suspendisse euismod tinc_idunt mauris, ac sagittis tellus molestie ac. Donec interdum, lorem a consequat consequat, turpis metus iaculis justo, at lobortis augue lorem ut sem. Mauris a tortor placerat, maximus justo _id, scelerisque ligula. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed blandit nec purus in rhoncus. Phasellus ultricies hendrerit quam, quis rhoncus dui facilisis nec. Nulla ultricies magna vitae sem fermentum accumsan. Nullam lorem est, finibus in vestibulum nec, pharetra a ipsum. Aliquam dictum dui sed lectus pharetra, in varius nunc venenatis. Vestibulum a massa quis diam tempor sodales. Proin elit ipsum, euismod sed risus vel, consectetur cursus tellus. Phasellus ullamcorper odio ornare purus dapibus tristique. Suspendisse euismod tinc_idunt mauris, ac sagittis tellus molestie ac. Donec interdum, lorem a consequat consequat, turpis metus iaculis justo, at lobortis augue lorem ut sem. Mauris a tortor placerat, maximus justo _id, scelerisque ligula.',
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed blandit nec purus in rhoncus. Phasellus ultricies hendrerit quam, quis rhoncus dui facilisis nec. Nulla ultricies magna vitae sem fermentum accumsan. Nullam lorem est, finibus in vestibulum nec, pharetra a ipsum. Aliquam dictum dui sed lectus pharetra, in varius nunc venenatis. Vestibulum a massa quis diam tempor sodales. Proin elit ipsum, euismod sed risus vel, consectetur cursus tellus. Phasellus ullamcorper odio ornare purus dapibus tristique. Suspendisse euismod tincidunt mauris, ac sagittis tellus molestie ac. Donec interdum, lorem a consequat consequat, turpis metus iaculis justo, at lobortis augue lorem ut sem. Mauris a tortor placerat, maximus justo id, scelerisque ligula. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed blandit nec purus in rhoncus. Phasellus ultricies hendrerit quam, quis rhoncus dui facilisis nec. Nulla ultricies magna vitae sem fermentum accumsan. Nullam lorem est, finibus in vestibulum nec, pharetra a ipsum. Aliquam dictum dui sed lectus pharetra, in varius nunc venenatis. Vestibulum a massa quis diam tempor sodales. Proin elit ipsum, euismod sed risus vel, consectetur cursus tellus. Phasellus ullamcorper odio ornare purus dapibus tristique. Suspendisse euismod tincidunt mauris, ac sagittis tellus molestie ac. Donec interdum, lorem a consequat consequat, turpis metus iaculis justo, at lobortis augue lorem ut sem. Mauris a tortor placerat, maximus justo id, scelerisque ligula. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed blandit nec purus in rhoncus. Phasellus ultricies hendrerit quam, quis rhoncus dui facilisis nec. Nulla ultricies magna vitae sem fermentum accumsan. Nullam lorem est, finibus in vestibulum nec, pharetra a ipsum. Aliquam dictum dui sed lectus pharetra, in varius nunc venenatis. Vestibulum a massa quis diam tempor sodales. Proin elit ipsum, euismod sed risus vel, consectetur cursus tellus. Phasellus ullamcorper odio ornare purus dapibus tristique. Suspendisse euismod tincidunt mauris, ac sagittis tellus molestie ac. Donec interdum, lorem a consequat consequat, turpis metus iaculis justo, at lobortis augue lorem ut sem. Mauris a tortor placerat, maximus justo id, scelerisque ligula. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed blandit nec purus in rhoncus. Phasellus ultricies hendrerit quam, quis rhoncus dui facilisis nec. Nulla ultricies magna vitae sem fermentum accumsan. Nullam lorem est, finibus in vestibulum nec, pharetra a ipsum. Aliquam dictum dui sed lectus pharetra, in varius nunc venenatis. Vestibulum a massa quis diam tempor sodales. Proin elit ipsum, euismod sed risus vel, consectetur cursus tellus. Phasellus ullamcorper odio ornare purus dapibus tristique. Suspendisse euismod tincidunt mauris, ac sagittis tellus molestie ac. Donec interdum, lorem a consequat consequat, turpis metus iaculis justo, at lobortis augue lorem ut sem. Mauris a tortor placerat, maximus justo id, scelerisque ligula. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed blandit nec purus in rhoncus. Phasellus ultricies hendrerit quam, quis rhoncus dui facilisis nec. Nulla ultricies magna vitae sem fermentum accumsan. Nullam lorem est, finibus in vestibulum nec, pharetra a ipsum. Aliquam dictum dui sed lectus pharetra, in varius nunc venenatis. Vestibulum a massa quis diam tempor sodales. Proin elit ipsum, euismod sed risus vel, consectetur cursus tellus. Phasellus ullamcorper odio ornare purus dapibus tristique. Suspendisse euismod tincidunt mauris, ac sagittis tellus molestie ac. Donec interdum, lorem a consequat consequat, turpis metus iaculis justo, at lobortis augue lorem ut sem. Mauris a tortor placerat, maximus justo id, scelerisque ligula. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed blandit nec purus in rhoncus. Phasellus ultricies hendrerit quam, quis rhoncus dui facilisis nec. Nulla ultricies magna vitae sem fermentum accumsan. Nullam lorem est, finibus in vestibulum nec, pharetra a ipsum. Aliquam dictum dui sed lectus pharetra, in varius nunc venenatis. Vestibulum a massa quis diam tempor sodales. Proin elit ipsum, euismod sed risus vel, consectetur cursus tellus. Phasellus ullamcorper odio ornare purus dapibus tristique. Suspendisse euismod tincidunt mauris, ac sagittis tellus molestie ac. Donec interdum, lorem a consequat consequat, turpis metus iaculis justo, at lobortis augue lorem ut sem. Mauris a tortor placerat, maximus justo id, scelerisque ligula.',
     url:
       'https://shop.jjcards.com/assets/images/board%20games/asmodee/mysterium.jpg',
     playtime: '40 - 60 min',
@@ -62,12 +62,12 @@ export const games = [
   },
   {
     name: 'Arkham Horror',
-    _id: 2,
+    id: 2,
     minPlayers: 2,
     maxPlayers: 7,
     owner: 'Roly',
     description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed blandit nec purus in rhoncus. Phasellus ultricies hendrerit quam, quis rhoncus dui facilisis nec. Nulla ultricies magna vitae sem fermentum accumsan. Nullam lorem est, finibus in vestibulum nec, pharetra a ipsum. Aliquam dictum dui sed lectus pharetra, in varius nunc venenatis. Vestibulum a massa quis diam tempor sodales. Proin elit ipsum, euismod sed risus vel, consectetur cursus tellus. Phasellus ullamcorper odio ornare purus dapibus tristique. Suspendisse euismod tinc_idunt mauris, ac sagittis tellus molestie ac. Donec interdum, lorem a consequat consequat, turpis metus iaculis justo, at lobortis augue lorem ut sem. Mauris a tortor placerat, maximus justo _id, scelerisque ligula.',
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed blandit nec purus in rhoncus. Phasellus ultricies hendrerit quam, quis rhoncus dui facilisis nec. Nulla ultricies magna vitae sem fermentum accumsan. Nullam lorem est, finibus in vestibulum nec, pharetra a ipsum. Aliquam dictum dui sed lectus pharetra, in varius nunc venenatis. Vestibulum a massa quis diam tempor sodales. Proin elit ipsum, euismod sed risus vel, consectetur cursus tellus. Phasellus ullamcorper odio ornare purus dapibus tristique. Suspendisse euismod tincidunt mauris, ac sagittis tellus molestie ac. Donec interdum, lorem a consequat consequat, turpis metus iaculis justo, at lobortis augue lorem ut sem. Mauris a tortor placerat, maximus justo id, scelerisque ligula.',
     url:
       'https://shop.jjcards.com/assets/images/board%20games/asmodee/mysterium.jpg',
     playtime: '40 - 60 min',
@@ -77,12 +77,12 @@ export const games = [
   },
   {
     name: 'Dixit',
-    _id: 3,
+    id: 3,
     minPlayers: 2,
     maxPlayers: 7,
     owner: 'Roly',
     description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed blandit nec purus in rhoncus. Phasellus ultricies hendrerit quam, quis rhoncus dui facilisis nec. Nulla ultricies magna vitae sem fermentum accumsan. Nullam lorem est, finibus in vestibulum nec, pharetra a ipsum. Aliquam dictum dui sed lectus pharetra, in varius nunc venenatis. Vestibulum a massa quis diam tempor sodales. Proin elit ipsum, euismod sed risus vel, consectetur cursus tellus. Phasellus ullamcorper odio ornare purus dapibus tristique. Suspendisse euismod tinc_idunt mauris, ac sagittis tellus molestie ac. Donec interdum, lorem a consequat consequat, turpis metus iaculis justo, at lobortis augue lorem ut sem. Mauris a tortor placerat, maximus justo _id, scelerisque ligula.',
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed blandit nec purus in rhoncus. Phasellus ultricies hendrerit quam, quis rhoncus dui facilisis nec. Nulla ultricies magna vitae sem fermentum accumsan. Nullam lorem est, finibus in vestibulum nec, pharetra a ipsum. Aliquam dictum dui sed lectus pharetra, in varius nunc venenatis. Vestibulum a massa quis diam tempor sodales. Proin elit ipsum, euismod sed risus vel, consectetur cursus tellus. Phasellus ullamcorper odio ornare purus dapibus tristique. Suspendisse euismod tincidunt mauris, ac sagittis tellus molestie ac. Donec interdum, lorem a consequat consequat, turpis metus iaculis justo, at lobortis augue lorem ut sem. Mauris a tortor placerat, maximus justo id, scelerisque ligula.',
     url:
       'https://shop.jjcards.com/assets/images/board%20games/asmodee/mysterium.jpg',
     playtime: '40 - 60 min',
@@ -92,12 +92,12 @@ export const games = [
   },
   {
     name: 'Eldritch Horror',
-    _id: 4,
+    id: 4,
     minPlayers: 2,
     maxPlayers: 7,
     owner: 'Roly',
     description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed blandit nec purus in rhoncus. Phasellus ultricies hendrerit quam, quis rhoncus dui facilisis nec. Nulla ultricies magna vitae sem fermentum accumsan. Nullam lorem est, finibus in vestibulum nec, pharetra a ipsum. Aliquam dictum dui sed lectus pharetra, in varius nunc venenatis. Vestibulum a massa quis diam tempor sodales. Proin elit ipsum, euismod sed risus vel, consectetur cursus tellus. Phasellus ullamcorper odio ornare purus dapibus tristique. Suspendisse euismod tinc_idunt mauris, ac sagittis tellus molestie ac. Donec interdum, lorem a consequat consequat, turpis metus iaculis justo, at lobortis augue lorem ut sem. Mauris a tortor placerat, maximus justo _id, scelerisque ligula.',
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed blandit nec purus in rhoncus. Phasellus ultricies hendrerit quam, quis rhoncus dui facilisis nec. Nulla ultricies magna vitae sem fermentum accumsan. Nullam lorem est, finibus in vestibulum nec, pharetra a ipsum. Aliquam dictum dui sed lectus pharetra, in varius nunc venenatis. Vestibulum a massa quis diam tempor sodales. Proin elit ipsum, euismod sed risus vel, consectetur cursus tellus. Phasellus ullamcorper odio ornare purus dapibus tristique. Suspendisse euismod tincidunt mauris, ac sagittis tellus molestie ac. Donec interdum, lorem a consequat consequat, turpis metus iaculis justo, at lobortis augue lorem ut sem. Mauris a tortor placerat, maximus justo id, scelerisque ligula.',
     url:
       'https://shop.jjcards.com/assets/images/board%20games/asmodee/mysterium.jpg',
     playtime: '40 - 60 min',
@@ -107,12 +107,12 @@ export const games = [
   },
   {
     name: 'Dead Of Winter',
-    _id: 5,
+    id: 5,
     minPlayers: 2,
     maxPlayers: 7,
     owner: 'Roly',
     description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed blandit nec purus in rhoncus. Phasellus ultricies hendrerit quam, quis rhoncus dui facilisis nec. Nulla ultricies magna vitae sem fermentum accumsan. Nullam lorem est, finibus in vestibulum nec, pharetra a ipsum. Aliquam dictum dui sed lectus pharetra, in varius nunc venenatis. Vestibulum a massa quis diam tempor sodales. Proin elit ipsum, euismod sed risus vel, consectetur cursus tellus. Phasellus ullamcorper odio ornare purus dapibus tristique. Suspendisse euismod tinc_idunt mauris, ac sagittis tellus molestie ac. Donec interdum, lorem a consequat consequat, turpis metus iaculis justo, at lobortis augue lorem ut sem. Mauris a tortor placerat, maximus justo _id, scelerisque ligula.',
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed blandit nec purus in rhoncus. Phasellus ultricies hendrerit quam, quis rhoncus dui facilisis nec. Nulla ultricies magna vitae sem fermentum accumsan. Nullam lorem est, finibus in vestibulum nec, pharetra a ipsum. Aliquam dictum dui sed lectus pharetra, in varius nunc venenatis. Vestibulum a massa quis diam tempor sodales. Proin elit ipsum, euismod sed risus vel, consectetur cursus tellus. Phasellus ullamcorper odio ornare purus dapibus tristique. Suspendisse euismod tincidunt mauris, ac sagittis tellus molestie ac. Donec interdum, lorem a consequat consequat, turpis metus iaculis justo, at lobortis augue lorem ut sem. Mauris a tortor placerat, maximus justo id, scelerisque ligula.',
     url:
       'https://shop.jjcards.com/assets/images/board%20games/asmodee/mysterium.jpg',
     playtime: '40 - 60 min',

@@ -35,13 +35,8 @@ const AddGameNightStack = () => {
   const addGameNight = useCallback((): void => {
     const dateToString = format(date, 'dd/MM');
     const url = games[0].url;
-    gameNight.push({
-      _id: 5,
-      date: dateToString,
-      place: place.name,
-      proposedBy: 'Za sad ja',
-      url,
-    });
+    //TODO: Push To Server
+
     dispatch(clearGameNight());
     navigation.navigate('Home');
   }, [date, games, place]);

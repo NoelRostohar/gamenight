@@ -20,7 +20,7 @@ const GamePick: React.FC<GamePickProps> = ({ game, allSelected }) => {
   const { games } = useSelector((state: GlobalState) => state.gameNight);
 
   const [switchStatus, setSwitchStatus] = useState<boolean>(
-    games.some((stateGame: GameType) => stateGame._id === game._id)
+    games.some((stateGame: GameType) => stateGame.id === game.id)
   );
 
   useEffect(() => {
@@ -28,7 +28,7 @@ const GamePick: React.FC<GamePickProps> = ({ game, allSelected }) => {
   }, [allSelected]);
 
   useEffect(() => {
-    switchStatus ? dispatch(addGame(game)) : dispatch(removeGame(game._id));
+    switchStatus ? dispatch(addGame(game)) : dispatch(removeGame(game.id));
   }, [switchStatus]);
 
   return (

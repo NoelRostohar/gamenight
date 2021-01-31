@@ -37,7 +37,7 @@ const Home = () => {
           overScrollMode="never"
         >
           {gameNight.map((game) => {
-            return <GameNight key={game._id} gameNight={game} />;
+            return <GameNight key={game.id} gameNight={game} />;
           })}
         </ScrollView>
         <View style={styles.section}>

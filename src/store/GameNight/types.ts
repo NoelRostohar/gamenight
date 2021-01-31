@@ -26,7 +26,7 @@ export interface AddGameAction {
 }
 export interface RemoveGameAction {
   type: GameNightActionTypes.RemoveGame;
-  _id: string | number;
+  id: string | number;
 }
 export interface ChangeDateAction {
   type: GameNightActionTypes.ChangeDate;
