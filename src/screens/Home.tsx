@@ -4,7 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 import { useSelector } from 'react-redux';
 
 import ActionButton from '../components/ActionButton';
-import GameNight, { CARD_WIDTH } from '../components/GameNightCard';
+import Gamenight, { CARD_WIDTH } from '../components/GamenightCard';
 import Game from '../components/Game';
 import Divider from '../components/Divider';
 
@@ -37,7 +37,7 @@ const Home = () => {
           overScrollMode="never"
         >
           {gameNight.map((game) => {
-            return <GameNight key={game.id} gameNight={game} />;
+            return <Gamenight key={game.id} gameNight={game} />;
           })}
         </ScrollView>
         <View style={styles.section}>
@@ -52,7 +52,7 @@ const Home = () => {
           })}
         </View>
       </ScrollView>
-      <ActionButton onPress={() => navigation.navigate('AddGameNightNav')} />
+      <ActionButton onPress={() => navigation.navigate('AddGamenightNav')} />
     </View>
   );
 };

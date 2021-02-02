@@ -9,22 +9,22 @@ import { MaterialIcons } from '@expo/vector-icons';
 import { useSelector, useDispatch } from 'react-redux';
 import { format } from 'date-fns';
 
-import AddGameNight from '../screens/AddGameNight';
+import AddGamenight from '../screens/AddGamenight';
 import SelectPlace from '../screens/SelectPlace';
 
 import theme from '../theme';
 import { gameNight } from '../api';
 import { GlobalState } from '../store';
-import { clearGameNight } from '../store/GameNight/actions';
+import { clearGamenight } from '../store/Gamenight/actions';
 
-type AddGameNightParamList = {
-  AddGameNight: undefined;
+type AddGamenightParamList = {
+  AddGamenight: undefined;
   SelectPlace: undefined;
 };
 
-const Stack = createStackNavigator<AddGameNightParamList>();
+const Stack = createStackNavigator<AddGamenightParamList>();
 
-const AddGameNightStack = () => {
+const AddGamenightStack = () => {
   const { date, games, place } = useSelector(
     (state: GlobalState) => state.gameNight
   );
@@ -32,12 +32,12 @@ const AddGameNightStack = () => {
   const dispatch = useDispatch();
   const navigation = useNavigation();
 
-  const addGameNight = useCallback((): void => {
+  const addGamenight = useCallback((): void => {
     const dateToString = format(date, 'dd/MM');
     const url = games[0].url;
     //TODO: Push To Server
 
-    dispatch(clearGameNight());
+    dispatch(clearGamenight());
     navigation.navigate('Home');
   }, [date, games, place]);
 
@@ -52,8 +52,8 @@ const AddGameNightStack = () => {
       }}
     >
       <Stack.Screen
-        name="AddGameNight"
-        component={AddGameNight}
+        name="AddGamenight"
+        component={AddGamenight}
         options={{
           headerTitle: 'Propose a Game Night!',
           headerBackTitleVisible: false,
@@ -65,7 +65,7 @@ const AddGameNightStack = () => {
               onPress={() =>
                 games.length < 1
                   ? Alert.alert('Warning', 'Please select at least one game.')
-                  : addGameNight()
+                  : addGamenight()
               }
               background={TouchableNativeFeedback.Ripple(theme.light, true, 15)}
               style={{ marginRight: 5 }}
@@ -103,4 +103,4 @@ const AddGameNightStack = () => {
   );
 };
 
-export default AddGameNightStack;
+export default AddGamenightStack;

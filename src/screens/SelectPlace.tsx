@@ -13,7 +13,7 @@ import Divider from '../components/Divider';
 
 import { places } from '../api';
 import theme from '../theme';
-import { changePlace } from '../store/GameNight/actions';
+import { changePlace } from '../store/Gamenight/actions';
 
 const SelectPlace = () => {
   const navigation = useNavigation();

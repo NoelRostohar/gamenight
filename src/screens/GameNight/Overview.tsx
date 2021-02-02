@@ -6,7 +6,7 @@ import ParticipantCard from '../../components/ParticipantCard';
 
 import theme from '../../theme';
 
-const GameNight = () => {
+const Gamenight = () => {
   return (
     <View style={styles.bg}>
       <View style={styles.iconContainer}>
@@ -57,4 +57,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default GameNight;
+export default Gamenight;

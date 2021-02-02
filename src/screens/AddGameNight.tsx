@@ -21,11 +21,11 @@ import DateTimePicker, { Event } from '@react-native-community/datetimepicker';
 import theme from '../theme';
 import { GameType } from '../types';
 import { GlobalState } from '../store';
-import { changeDate, changeTime } from '../store/GameNight/actions';
+import { changeDate, changeTime } from '../store/Gamenight/actions';
 
 type DateTimePickerMode = 'date' | 'time';
 
-const AddGameNight = () => {
+const AddGamenight = () => {
   const [filterValue, setFilterValue] = useState<string>('');
   const [allSelected, setAllSelected] = useState<boolean>(false);
   const [showDatePicker, setShowDatePicker] = useState<boolean>(false);
@@ -205,4 +205,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AddGameNight;
+export default AddGamenight;

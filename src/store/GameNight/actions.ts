@@ -1,43 +1,43 @@
-import { GameNightActions, GameNightActionTypes } from './types';
+import { GamenightActions, GamenightActionTypes } from './types';
 
 import { GameType, Place } from '../../types';
 
-export const changePlace = (place: Place): GameNightActions => {
+export const changePlace = (place: Place): GamenightActions => {
   return {
-    type: GameNightActionTypes.ChangePlace,
+    type: GamenightActionTypes.ChangePlace,
     place,
   };
 };
 
-export const addGame = (game: GameType): GameNightActions => {
+export const addGame = (game: GameType): GamenightActions => {
   return {
-    type: GameNightActionTypes.AddGame,
+    type: GamenightActionTypes.AddGame,
     game,
   };
 };
-export const removeGame = (id: string | number): GameNightActions => {
+export const removeGame = (id: string | number): GamenightActions => {
   return {
-    type: GameNightActionTypes.RemoveGame,
+    type: GamenightActionTypes.RemoveGame,
     id,
   };
 };
 
-export const changeDate = (date: Date): GameNightActions => {
+export const changeDate = (date: Date): GamenightActions => {
   return {
-    type: GameNightActionTypes.ChangeDate,
+    type: GamenightActionTypes.ChangeDate,
     date,
   };
 };
 
-export const changeTime = (time: Date): GameNightActions => {
+export const changeTime = (time: Date): GamenightActions => {
   return {
-    type: GameNightActionTypes.ChangeTime,
+    type: GamenightActionTypes.ChangeTime,
     time,
   };
 };
 
-export const clearGameNight = (): GameNightActions => {
+export const clearGamenight = (): GamenightActions => {
   return {
-    type: GameNightActionTypes.ClearGameNight,
+    type: GamenightActionTypes.ClearGamenight,
   };
 };

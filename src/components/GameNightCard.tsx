@@ -14,7 +14,7 @@ import IconText from './IconText';
 
 import theme from '../theme';
 
-interface GameNightProps {
+interface GamenightProps {
   gameNight: {
     proposedBy: string;
     date: string;
@@ -26,13 +26,13 @@ interface GameNightProps {
 const CARD_HEIGHT: number = Dimensions.get('window').height / 1.9;
 export const CARD_WIDTH: number = CARD_HEIGHT * 0.6;
 
-const GameNightCard: React.FC<GameNightProps> = ({
+const GamenightCard: React.FC<GamenightProps> = ({
   gameNight: { proposedBy, date, place, url },
 }) => {
   const navigation = useNavigation();
 
   return (
-    <TouchableOpacity onPress={() => navigation.navigate('GameNightNav')}>
+    <TouchableOpacity onPress={() => navigation.navigate('GamenightNav')}>
       <View style={styles.root}>
         <ImageBackground style={styles.img} source={{ uri: url }}>
           <LinearGradient
@@ -94,4 +94,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default GameNightCard;
+export default GamenightCard;

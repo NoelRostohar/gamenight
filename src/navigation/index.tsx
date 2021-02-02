@@ -8,8 +8,8 @@ import {
 import Home from '../screens/Home';
 import GameDetails from '../screens/GameDetails';
 import HowToPlay from '../screens/HowToPlay';
-import AddGameNightNav from './AddGameNightNav';
-import GameNightNav from './GameNightNav';
+import AddGamenightNav from './AddGamenightNav';
+import GamenightNav from './GamenightNav';
 
 import theme from '../theme';
 import { GameType } from '../types';
@@ -18,8 +18,8 @@ export type MainStackParamList = {
   Home: undefined;
   GameDetails: GameType;
   HowToPlay: { howToPlay: string; name: string };
-  AddGameNightNav: undefined;
-  GameNightNav: undefined;
+  AddGamenightNav: undefined;
+  GamenightNav: undefined;
 };
 
 const Stack = createStackNavigator<MainStackParamList>();
@@ -60,11 +60,11 @@ const MainStack = () => {
         options={{ headerBackTitle: '' }}
       />
       <Stack.Screen
-        name="AddGameNightNav"
-        component={AddGameNightNav}
+        name="AddGamenightNav"
+        component={AddGamenightNav}
         options={{ headerShown: false }}
       />
-      <Stack.Screen name="GameNightNav" component={GameNightNav} />
+      <Stack.Screen name="GamenightNav" component={GamenightNav} />
     </Stack.Navigator>
   );
 };

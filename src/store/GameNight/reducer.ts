@@ -1,11 +1,11 @@
 import {
-  GameNightActions,
-  GameNightState,
-  GameNightActionTypes,
+  GamenightActions,
+  GamenightState,
+  GamenightActionTypes,
 } from './types';
 import { GameType } from '../../types';
 
-const initialState: GameNightState = {
+const initialState: GamenightState = {
   games: [],
   date: new Date(),
   time: new Date(),
@@ -15,43 +15,43 @@ const initialState: GameNightState = {
   },
 };
 
-const GameNightReducer = (
+const GamenightReducer = (
   state = initialState,
-  action: GameNightActions
-): GameNightState => {
+  action: GamenightActions
+): GamenightState => {
   switch (action.type) {
-    case GameNightActionTypes.ChangePlace:
+    case GamenightActionTypes.ChangePlace:
       return {
         ...state,
         place: action.place,
       };
-    case GameNightActionTypes.ChangeTime:
+    case GamenightActionTypes.ChangeTime:
       return {
         ...state,
         time: action.time,
       };
-    case GameNightActionTypes.ChangeDate:
+    case GamenightActionTypes.ChangeDate:
       return {
         ...state,
         date: action.date,
       };
-    case GameNightActionTypes.AddGame:
+    case GamenightActionTypes.AddGame:
       return !state.games.some((game: GameType) => game.id === action.game.id)
         ? {
             ...state,
             games: [...state.games, action.game],
           }
         : state;
-    case GameNightActionTypes.RemoveGame:
+    case GamenightActionTypes.RemoveGame:
       return {
         ...state,
         games: state.games.filter((game) => game.id !== action.id),
       };
-    case GameNightActionTypes.ClearGameNight:
+    case GamenightActionTypes.ClearGamenight:
       return initialState;
     default:
       return state;
   }
 };
 
-export default GameNightReducer;
+export default GamenightReducer;

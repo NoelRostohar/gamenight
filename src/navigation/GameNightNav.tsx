@@ -1,19 +1,19 @@
 import React from 'react';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 
-import Overview from '../screens/GameNight/Overview';
-import Chat from '../screens/GameNight/Chat';
-import Games from '../screens/GameNight/Games';
+import Overview from '../screens/Gamenight/Overview';
+import Chat from '../screens/Gamenight/Chat';
+import Games from '../screens/Gamenight/Games';
 
-type GameNightParamList = {
+type GamenightParamList = {
   Overview: undefined;
   Chat: undefined;
   Games: undefined;
 };
 
-const Tab = createMaterialTopTabNavigator<GameNightParamList>();
+const Tab = createMaterialTopTabNavigator<GamenightParamList>();
 
-const GameNightNav = () => {
+const GamenightNav = () => {
   return (
     <Tab.Navigator
       tabBarOptions={{
@@ -27,4 +27,4 @@ const GameNightNav = () => {
   );
 };
 
-export default GameNightNav;
+export default GamenightNav;

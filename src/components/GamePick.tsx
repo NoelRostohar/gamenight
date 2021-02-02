@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import Game from './Game';
 
-import { addGame, removeGame } from '../store/GameNight/actions';
+import { addGame, removeGame } from '../store/Gamenight/actions';
 
 import theme from '../theme';
 import { GameType } from '../types';

@@ -1,13 +1,13 @@
 import { combineReducers } from 'redux';
 
-import gameNightReducer from './GameNight/reducer';
-import { GameNightState } from './GameNight/types';
+import gameNightReducer from './Gamenight/reducer';
+import { GamenightState } from './Gamenight/types';
 
 import gamesReducer from './Games/reducer';
 import { GamesState } from './Games/types';
 
 export interface GlobalState {
-  gameNight: GameNightState;
+  gameNight: GamenightState;
   games: GamesState;
 }
 

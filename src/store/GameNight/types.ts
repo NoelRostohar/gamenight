@@ -1,15 +1,15 @@
 import { GameType, Place } from '../../types';
 
-export enum GameNightActionTypes {
+export enum GamenightActionTypes {
   ChangePlace = 'ChangePlace',
   AddGame = 'AddGame',
   RemoveGame = 'RemoveGame',
   ChangeDate = 'ChangeDate',
   ChangeTime = 'ChangeTime',
-  ClearGameNight = 'ClearGameNight',
+  ClearGamenight = 'ClearGamenight',
 }
 
-export interface GameNightState {
+export interface GamenightState {
   games: GameType[];
   place: Place;
   date: Date;
@@ -17,33 +17,33 @@ export interface GameNightState {
 }
 
 export interface ChangePlaceAction {
-  type: GameNightActionTypes.ChangePlace;
+  type: GamenightActionTypes.ChangePlace;
   place: Place;
 }
 export interface AddGameAction {
-  type: GameNightActionTypes.AddGame;
+  type: GamenightActionTypes.AddGame;
   game: GameType;
 }
 export interface RemoveGameAction {
-  type: GameNightActionTypes.RemoveGame;
+  type: GamenightActionTypes.RemoveGame;
   id: string | number;
 }
 export interface ChangeDateAction {
-  type: GameNightActionTypes.ChangeDate;
+  type: GamenightActionTypes.ChangeDate;
   date: Date;
 }
 export interface ChangeTimeAction {
-  type: GameNightActionTypes.ChangeTime;
+  type: GamenightActionTypes.ChangeTime;
   time: Date;
 }
-export interface ClearGameNightAction {
-  type: GameNightActionTypes.ClearGameNight;
+export interface ClearGamenightAction {
+  type: GamenightActionTypes.ClearGamenight;
 }
 
-export type GameNightActions =
+export type GamenightActions =
   | ChangePlaceAction
   | AddGameAction
   | RemoveGameAction
   | ChangeDateAction
   | ChangeTimeAction
-  | ClearGameNightAction;
+  | ClearGamenightAction;
