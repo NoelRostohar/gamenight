@@ -9,7 +9,7 @@ const genreColors: GenreColor = {
     background: '#3A7D7D',
     text: '#42D5DE',
   },
-  Fighting: {
+  Wargame: {
     background: '#62303E',
     text: '#E7496A',
   },
