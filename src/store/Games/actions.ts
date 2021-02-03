@@ -1,6 +1,6 @@
 import { GamesState, StoreGamesAction, GamesActionTypes } from './types';
 import { ThunkAction } from 'redux-thunk';
-import axios from 'axios';
+import axios from '../../../axiosInstance';
 
 export const storeGames = ({ games }: GamesState): StoreGamesAction => {
   return {
@@ -17,7 +17,7 @@ export const getGames = (): ThunkAction<
 > => {
   return async (dispatch) => {
     try {
-      const res = await axios.get('http://192.168.1.6:3000/api/games');
+      const res = await axios.get('/games');
       dispatch(storeGames({ games: res.data }));
     } catch (err) {
       console.log(err);

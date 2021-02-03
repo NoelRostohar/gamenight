@@ -32,8 +32,15 @@ export interface GameType {
 }
 
 export interface Place {
+  id?: number;
   name: string;
   address: string;
+}
+
+export interface Chat {
+  id: number;
+  username: string;
+  message: string;
 }
 
 export interface GenreColor {
@@ -41,6 +48,22 @@ export interface GenreColor {
     background: string;
     text: string;
   };
+}
+
+export interface Participant {
+  username: string;
+  id: number;
+}
+
+export interface GamenightType {
+  id: number;
+  url: string;
+  proposedBy: string;
+  date: string;
+  time: string;
+  place: Place;
+  chat: Chat[];
+  participants: Participant[];
 }
 
 export type Icon =
