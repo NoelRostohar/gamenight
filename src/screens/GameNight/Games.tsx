@@ -74,8 +74,13 @@ const Games: React.FC<GamesProps> = ({ gamenight: { participants } }) => {
         .map((game: any) => {
           return (
             <Fragment key={game.id}>
-              <View style={styles.gameContainer}>
-                <Game game={game} />
+              <View style={styles.gameCardContainer}>
+                <View style={styles.gameContainer}>
+                  <Game
+                    game={game}
+                    maxPlayerWarning={participants.length > game.maxPlayers}
+                  />
+                </View>
                 <Text style={styles.votes}>
                   {game.count} {game.count > 1 ? 'votes' : 'vote'}
                 </Text>
@@ -89,10 +94,13 @@ const Games: React.FC<GamesProps> = ({ gamenight: { participants } }) => {
 };
 
 const styles = StyleSheet.create({
-  gameContainer: {
+  gameCardContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+  },
+  gameContainer: {
+    flex: 1,
   },
   votes: {
     color: theme.faded,

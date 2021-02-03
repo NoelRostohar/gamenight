@@ -9,9 +9,10 @@ import { GameType } from '../types';
 
 interface GameProps {
   game: GameType;
+  maxPlayerWarning?: boolean;
 }
 
-const Game: React.FC<GameProps> = ({ game }) => {
+const Game: React.FC<GameProps> = ({ game, maxPlayerWarning }) => {
   const { url, name, minPlayers, maxPlayers, owner } = game;
   const navigation = useNavigation();
 
@@ -26,7 +27,11 @@ const Game: React.FC<GameProps> = ({ game }) => {
               icon="group"
               size={12}
               text={`${minPlayers} - ${maxPlayers}`}
+              color={maxPlayerWarning ? theme.danger : undefined}
             />
+            {maxPlayerWarning && (
+              <Text style={styles.warning}>Too many participants</Text>
+            )}
           </View>
           <IconText
             icon="person-pin-circle"
@@ -59,6 +64,10 @@ const styles = StyleSheet.create({
   name: {
     color: theme.light,
     fontSize: 16,
+  },
+  warning: {
+    color: theme.danger,
+    fontSize: 12,
   },
 });
 
