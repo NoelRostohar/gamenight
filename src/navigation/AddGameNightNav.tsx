@@ -13,7 +13,6 @@ import AddGamenight from '../screens/AddGamenight';
 import SelectPlace from '../screens/SelectPlace';
 
 import theme from '../theme';
-import { gameNight } from '../api';
 import { GlobalState } from '../store';
 import { clearGamenight } from '../store/Gamenight/actions';
 
@@ -26,7 +25,7 @@ const Stack = createStackNavigator<AddGamenightParamList>();
 
 const AddGamenightStack = () => {
   const { date, games, place } = useSelector(
-    (state: GlobalState) => state.gameNight
+    (state: GlobalState) => state.gamenight
   );
 
   const dispatch = useDispatch();

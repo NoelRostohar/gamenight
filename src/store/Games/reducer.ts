@@ -1,10 +1,13 @@
-import { GamesState, GamesActionTypes, StoreGamesAction } from './types';
+import { GamesState, GamesActionTypes, GamesActions } from './types';
 
 const initialState: GamesState = {
   games: [],
 };
 
-const gamesReducer = (state = initialState, action: StoreGamesAction) => {
+const gamesReducer = (
+  state = initialState,
+  action: GamesActions
+): GamesState => {
   switch (action.type) {
     case GamesActionTypes.StoreGames:
       return {

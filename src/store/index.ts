@@ -1,18 +1,23 @@
 import { combineReducers } from 'redux';
 
-import gameNightReducer from './Gamenight/reducer';
+import gamenightReducer from './Gamenight/reducer';
 import { GamenightState } from './Gamenight/types';
+
+import gamenightsReducer from './Gamenights/reducer';
+import { GamenightsState } from './Gamenights/types';
 
 import gamesReducer from './Games/reducer';
 import { GamesState } from './Games/types';
 
 export interface GlobalState {
-  gameNight: GamenightState;
+  gamenight: GamenightState;
+  gamenights: GamenightsState;
   games: GamesState;
 }
 
 const reducers = combineReducers({
-  gameNight: gameNightReducer,
+  gamenight: gamenightReducer,
+  gamenights: gamenightsReducer,
   games: gamesReducer,
 });
 

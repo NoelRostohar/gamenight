@@ -1,8 +1,13 @@
-import { GamesState, StoreGamesAction, GamesActionTypes } from './types';
+import {
+  GamesState,
+  GamesActions,
+  StoreGamesAction,
+  GamesActionTypes,
+} from './types';
 import { ThunkAction } from 'redux-thunk';
 import axios from '../../../axiosInstance';
 
-export const storeGames = ({ games }: GamesState): StoreGamesAction => {
+export const storeGames = ({ games }: GamesState): GamesActions => {
   return {
     type: GamesActionTypes.StoreGames,
     games,

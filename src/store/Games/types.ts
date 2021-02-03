@@ -12,3 +12,5 @@ export interface StoreGamesAction {
   type: GamesActionTypes.StoreGames;
   games: GameType[];
 }
+
+export type GamesActions = StoreGamesAction;
