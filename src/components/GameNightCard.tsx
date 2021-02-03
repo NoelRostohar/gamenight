@@ -13,21 +13,17 @@ import { useNavigation } from '@react-navigation/native';
 import IconText from './IconText';
 
 import theme from '../theme';
-
-interface GamenightProps {
-  gameNight: {
-    proposedBy: string;
-    date: string;
-    place: string;
-    url: string;
-  };
-}
+import { GamenightType } from '../types';
 
 const CARD_HEIGHT: number = Dimensions.get('window').height / 1.9;
 export const CARD_WIDTH: number = CARD_HEIGHT * 0.6;
 
+interface GamenightProps {
+  gamenight: GamenightType;
+}
+
 const GamenightCard: React.FC<GamenightProps> = ({
-  gameNight: { proposedBy, date, place, url },
+  gamenight: { proposedBy, date, place, url },
 }) => {
   const navigation = useNavigation();
 
@@ -46,7 +42,7 @@ const GamenightCard: React.FC<GamenightProps> = ({
                 <View style={{ marginRight: 10 }}>
                   <IconText icon="event" size={12} text={date} />
                 </View>
-                <IconText icon="location-on" size={12} text={place} />
+                <IconText icon="location-on" size={12} text={place.name} />
               </View>
             </View>
           </LinearGradient>

@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import React, { useEffect } from 'react';
+import React from 'react';
 import MainStack from './src/navigation';
 import {
   NavigationContainer,
@@ -10,7 +10,7 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 
-import GetGames from './src/components/GetGames';
+import GetInitialData from './src/components/GetInitialData';
 
 import theme from './src/theme';
 import reducers from './src/store';
@@ -32,7 +32,7 @@ const App = () => {
   return (
     <Provider store={store}>
       <NavigationContainer theme={navTheme}>
-        <GetGames />
+        <GetInitialData />
         <StatusBar style="inverted" />
         <MainStack />
       </NavigationContainer>

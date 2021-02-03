@@ -17,7 +17,7 @@ interface GamePickProps {
 
 const GamePick: React.FC<GamePickProps> = ({ game, allSelected }) => {
   const dispatch = useDispatch();
-  const { games } = useSelector((state: GlobalState) => state.gameNight);
+  const { games } = useSelector((state: GlobalState) => state.gamenight);
 
   const [switchStatus, setSwitchStatus] = useState<boolean>(
     games.some((stateGame: GameType) => stateGame.id === game.id)

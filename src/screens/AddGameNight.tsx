@@ -34,7 +34,7 @@ const AddGamenight = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
   const { date, time, place } = useSelector(
-    (state: GlobalState) => state.gameNight
+    (state: GlobalState) => state.gamenight
   );
   const { games } = useSelector((state: GlobalState) => state.games);
 

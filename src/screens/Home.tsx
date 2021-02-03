@@ -18,6 +18,7 @@ import { GlobalState } from '../store';
 const Home = () => {
   const navigation = useNavigation();
   const { games } = useSelector((state: GlobalState) => state.games);
+  const { gamenights } = useSelector((state: GlobalState) => state.gamenights);
 
   return (
     <View style={styles.bg}>
@@ -36,8 +37,8 @@ const Home = () => {
           snapToInterval={CARD_WIDTH}
           overScrollMode="never"
         >
-          {gameNight.map((game) => {
-            return <Gamenight key={game.id} gameNight={game} />;
+          {gamenights.map((gamenight) => {
+            return <Gamenight key={gamenight.id} gamenight={gamenight} />;
           })}
         </ScrollView>
         <View style={styles.section}>
