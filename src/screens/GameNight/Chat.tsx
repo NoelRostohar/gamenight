@@ -20,13 +20,19 @@ interface ChatProps {
 const Chat: React.FC<ChatProps> = ({ gamenight: { chat } }) => {
   return (
     <>
-      <FlatList
-        data={chat}
-        renderItem={({ item }) => <ChatBubble chat={item} />}
-        keyExtractor={({ id }) => id.toString()}
-        contentContainerStyle={{ paddingHorizontal: 20 }}
-        inverted
-      />
+      {chat.length > 0 ? (
+        <FlatList
+          data={chat}
+          renderItem={({ item }) => <ChatBubble chat={item} />}
+          keyExtractor={({ id }) => id.toString()}
+          contentContainerStyle={{ paddingHorizontal: 20 }}
+          inverted
+        />
+      ) : (
+        <View style={styles.noChatContainer}>
+          <Text style={styles.noChatText}>No messages yet.</Text>
+        </View>
+      )}
       <View style={styles.inputContainer}>
         <Input
           icon="send"
@@ -44,6 +50,14 @@ const Chat: React.FC<ChatProps> = ({ gamenight: { chat } }) => {
 };
 
 const styles = StyleSheet.create({
+  noChatContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    flex: 1,
+  },
+  noChatText: {
+    color: theme.faded,
+  },
   inputContainer: {
     paddingHorizontal: 20,
     paddingVertical: 10,
