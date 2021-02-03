@@ -54,6 +54,7 @@ export interface GenreColor {
 export interface Participant {
   username: string;
   id: number;
+  games: GameType[];
 }
 
 export interface GamenightType {

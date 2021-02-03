@@ -40,9 +40,10 @@ const Overview: React.FC<OverviewProps> = ({
         <Text style={styles.sectionTitle}>Participants</Text>
       </View>
       {participants.map((participant: Participant) => {
-        return <ParticipantCard key={participant.id} />;
+        return (
+          <ParticipantCard key={participant.id} participant={participant} />
+        );
       })}
-      <ParticipantCard />
     </View>
   );
 };
