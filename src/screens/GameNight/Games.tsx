@@ -1,10 +1,4 @@
-import React, {
-  memo,
-  useReducer,
-  useEffect,
-  Fragment,
-  useCallback,
-} from 'react';
+import React, { memo, useReducer, useEffect, Fragment } from 'react';
 import { ScrollView, Text, View, StyleSheet } from 'react-native';
 
 import Game from '../../components/Game';

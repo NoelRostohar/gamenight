@@ -64,7 +64,13 @@ const MainStack = () => {
         component={AddGamenightNav}
         options={{ headerShown: false }}
       />
-      <Stack.Screen name="GamenightNav" component={GamenightNav} />
+      <Stack.Screen
+        name="GamenightNav"
+        component={GamenightNav}
+        options={({ route }) => ({
+          title: route.params.gamenight.proposedBy + "'s Gamenight",
+        })}
+      />
     </Stack.Navigator>
   );
 };
