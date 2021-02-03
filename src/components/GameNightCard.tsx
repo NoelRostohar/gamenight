@@ -22,13 +22,14 @@ interface GamenightProps {
   gamenight: GamenightType;
 }
 
-const GamenightCard: React.FC<GamenightProps> = ({
-  gamenight: { proposedBy, date, place, url },
-}) => {
+const GamenightCard: React.FC<GamenightProps> = ({ gamenight }) => {
+  const { proposedBy, date, place, url } = gamenight;
   const navigation = useNavigation();
 
   return (
-    <TouchableOpacity onPress={() => navigation.navigate('GamenightNav')}>
+    <TouchableOpacity
+      onPress={() => navigation.navigate('GamenightNav', { gamenight })}
+    >
       <View style={styles.root}>
         <ImageBackground style={styles.img} source={{ uri: url }}>
           <LinearGradient

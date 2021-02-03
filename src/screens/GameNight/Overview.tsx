@@ -1,12 +1,17 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
 import IconText from '../../components/IconText';
 import ParticipantCard from '../../components/ParticipantCard';
 
 import theme from '../../theme';
+import { GamenightType } from '../../types';
 
-const Gamenight = () => {
+interface OverviewProps {
+  gamenight: GamenightType;
+}
+
+const Overview: React.FC<OverviewProps> = ({ gamenight }) => {
   return (
     <View style={styles.bg}>
       <View style={styles.iconContainer}>
@@ -57,4 +62,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Gamenight;
+export default memo(Overview);

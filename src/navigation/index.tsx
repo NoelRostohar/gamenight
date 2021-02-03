@@ -12,14 +12,14 @@ import AddGamenightNav from './AddGamenightNav';
 import GamenightNav from './GameNightnav';
 
 import theme from '../theme';
-import { GameType } from '../types';
+import { GamenightType, GameType } from '../types';
 
 export type MainStackParamList = {
   Home: undefined;
   GameDetails: GameType;
   HowToPlay: { howToPlay: string; name: string };
   AddGamenightNav: undefined;
-  GamenightNav: undefined;
+  GamenightNav: { gamenight: GamenightType };
 };
 
 const Stack = createStackNavigator<MainStackParamList>();

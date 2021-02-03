@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import {
   View,
   Text,
@@ -11,8 +11,13 @@ import Input from '../../components/Input';
 import ChatBubble from '../../components/ChatBubble';
 
 import theme from '../../theme';
+import { GamenightType } from '../../types';
 
-const Chat = () => {
+interface ChatProps {
+  gamenight: GamenightType;
+}
+
+const Chat: React.FC<ChatProps> = ({ gamenight }) => {
   return (
     <>
       <FlatList
@@ -50,4 +55,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Chat;
+export default memo(Chat);
