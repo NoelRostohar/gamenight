@@ -17,13 +17,13 @@ interface ChatProps {
   gamenight: GamenightType;
 }
 
-const Chat: React.FC<ChatProps> = ({ gamenight }) => {
+const Chat: React.FC<ChatProps> = ({ gamenight: { chat } }) => {
   return (
     <>
       <FlatList
-        data={[1, 2, 3, 4]}
-        renderItem={() => <ChatBubble />}
-        keyExtractor={(item) => item.toString()}
+        data={chat}
+        renderItem={({ item }) => <ChatBubble chat={item} />}
+        keyExtractor={({ id }) => id.toString()}
         contentContainerStyle={{ paddingHorizontal: 20 }}
         inverted
       />

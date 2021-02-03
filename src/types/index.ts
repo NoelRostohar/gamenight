@@ -41,6 +41,7 @@ export interface Chat {
   id: number;
   username: string;
   message: string;
+  createdAt: Date;
 }
 
 export interface GenreColor {

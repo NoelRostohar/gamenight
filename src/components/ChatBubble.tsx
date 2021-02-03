@@ -1,11 +1,18 @@
 import React from 'react';
 import { View, Text, StyleSheet, Dimensions } from 'react-native';
+import { format } from 'date-fns';
 
 import theme from '../theme';
 
+import { Chat } from '../types';
+
+interface ChatBubbleProps {
+  chat: Chat;
+}
+
 const MIN_WIDTH = Dimensions.get('window').width / 2.5;
 
-const ChatBubble = () => {
+const ChatBubble: React.FC<ChatBubbleProps> = ({ chat }) => {
   const styles = StyleSheet.create({
     root: {
       paddingHorizontal: 15,
@@ -38,13 +45,13 @@ const ChatBubble = () => {
     <View style={styles.root}>
       <View style={styles.infoContainer}>
         <Text numberOfLines={1} style={styles.username}>
-          ColdCoffin
+          {chat.username}
         </Text>
         <Text numberOfLines={1} style={styles.time}>
-          18:35
+          {format(new Date(chat.createdAt), 'kk:mm')}
         </Text>
       </View>
-      <Text>aba</Text>
+      <Text>{chat.message}</Text>
     </View>
   );
 };

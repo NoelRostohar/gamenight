@@ -5,38 +5,43 @@ import IconText from '../../components/IconText';
 import ParticipantCard from '../../components/ParticipantCard';
 
 import theme from '../../theme';
-import { GamenightType } from '../../types';
+import { GamenightType, Participant } from '../../types';
 
 interface OverviewProps {
   gamenight: GamenightType;
 }
 
-const Overview: React.FC<OverviewProps> = ({ gamenight }) => {
+const Overview: React.FC<OverviewProps> = ({
+  gamenight: { date, participants, place, time },
+}) => {
   return (
     <View style={styles.bg}>
       <View style={styles.iconContainer}>
         <IconText
           icon="calendar-today"
           size={16}
-          text="12/01/21"
+          text={date}
           color={theme.light}
         />
       </View>
       <View style={styles.iconContainer}>
-        <IconText icon="timer" size={16} text="20:00h" color={theme.light} />
+        <IconText icon="timer" size={16} text={time} color={theme.light} />
       </View>
       <View style={styles.iconContainer}>
         <IconText
           icon="location-pin"
           size={16}
-          text="Roly's plejs"
+          text={place.name}
           color={theme.light}
-          subtext={'Ul. Vilima Korajca 4'}
+          subtext={place.address}
         />
       </View>
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>Participants</Text>
       </View>
+      {participants.map((participant: Participant) => {
+        return <ParticipantCard key={participant.id} />;
+      })}
       <ParticipantCard />
     </View>
   );
