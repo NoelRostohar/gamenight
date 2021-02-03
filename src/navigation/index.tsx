@@ -9,7 +9,7 @@ import Home from '../screens/Home';
 import GameDetails from '../screens/GameDetails';
 import HowToPlay from '../screens/HowToPlay';
 import AddGamenightNav from './AddGamenightNav';
-import GamenightNav from './GamenightNav';
+import GamenightNav from './GameNightnav';
 
 import theme from '../theme';
 import { GameType } from '../types';
