@@ -4,12 +4,14 @@ import {
   createStackNavigator,
   CardStyleInterpolators,
 } from '@react-navigation/stack';
+import { MaterialIcons } from '@expo/vector-icons';
 
 import Home from '../screens/Home';
 import GameDetails from '../screens/GameDetails';
 import HowToPlay from '../screens/HowToPlay';
 import AddGamenightNav from './AddGamenightNav';
 import GamenightNav from './GameNightnav';
+import VoteGames from '../screens/Gamenight/VoteGames';
 
 import theme from '../theme';
 import { GamenightType, GameType } from '../types';
@@ -20,6 +22,7 @@ export type MainStackParamList = {
   HowToPlay: { howToPlay: string; name: string };
   AddGamenightNav: undefined;
   GamenightNav: { gamenight: GamenightType };
+  VoteGames: undefined;
 };
 
 const Stack = createStackNavigator<MainStackParamList>();
@@ -70,6 +73,16 @@ const MainStack = () => {
         options={({ route }) => ({
           title: route.params.gamenight.proposedBy + "'s Gamenight",
         })}
+      />
+      <Stack.Screen
+        name="VoteGames"
+        component={VoteGames}
+        options={{
+          title: 'Choose Games',
+          headerBackImage: () => (
+            <MaterialIcons name="close" size={24} color={theme.light} />
+          ),
+        }}
       />
     </Stack.Navigator>
   );

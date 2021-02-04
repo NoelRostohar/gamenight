@@ -10,6 +10,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import AddGamenight from '../screens/AddGamenight';
 import SelectPlace from '../screens/SelectPlace';
+import HeaderRightActionButton from '../components/HeaderRightActionButton';
 
 import theme from '../theme';
 import { GlobalState } from '../store';
@@ -58,33 +59,14 @@ const AddGamenightStack = () => {
             <MaterialIcons name="close" size={24} color={theme.light} />
           ),
           headerRight: () => (
-            <TouchableNativeFeedback
+            <HeaderRightActionButton
               onPress={() =>
                 games.length < 1
                   ? Alert.alert('Warning', 'Please select at least one game.')
                   : postGamenight()
               }
-              background={TouchableNativeFeedback.Ripple(theme.light, true, 15)}
-              style={{ marginRight: 5 }}
-            >
-              <View
-                style={{
-                  width: 30,
-                  height: 30,
-                  marginRight: 5,
-                  borderRadius: 100,
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  alignSelf: 'center',
-                }}
-              >
-                <MaterialIcons
-                  name="check"
-                  size={24}
-                  color={theme.confirmation}
-                />
-              </View>
-            </TouchableNativeFeedback>
+              icon="check"
+            />
           ),
         }}
       />
