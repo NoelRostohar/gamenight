@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {
+  Alert,
   View,
   ScrollView,
   Text,
@@ -61,6 +62,11 @@ const AddGamenight = () => {
   useEffect(() => {
     if (allSelected) setAllSelected(false);
   }, [allSelected]);
+
+  useEffect(() => {
+    if (!loading && status === 'error')
+      Alert.alert('Error', 'There was a problem with the server.');
+  }, [loading, status]);
 
   return (
     <>

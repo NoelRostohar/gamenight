@@ -55,12 +55,14 @@ const GamenightReducer = (
         ...state,
         loading: true,
         status: 'fetching',
+        error: '',
       };
     case StateStatusTypes.FetchSuccess:
       return {
         ...state,
         loading: false,
         status: 'success',
+        error: '',
       };
     case StateStatusTypes.FetchError:
       return {
