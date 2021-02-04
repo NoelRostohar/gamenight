@@ -8,7 +8,7 @@ import { Icon } from '../types';
 interface InputProps {
   icon: Icon;
   [rest: string]: any;
-  flexSize: number;
+  flexSize?: number;
   button?: React.ReactNode;
 }
 
