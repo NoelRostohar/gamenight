@@ -1,11 +1,11 @@
-import { GamenightActions, GamenightActionTypes } from './types';
+import { GamenightActions, GamenightActionTypes, Action } from './types';
 import { ThunkAction } from 'redux-thunk';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from '../../../axiosInstance';
-import { format } from 'date-fns';
 
 import { GameType, Place } from '../../types';
 import { GlobalState } from '../';
+import { fetchError, fetchSuccess, startFetching } from '../statusActions';
 
 export const changePlace = (place: Place): GamenightActions => {
   return {
@@ -51,26 +51,27 @@ export const addGamenight = (): ThunkAction<
   void,
   GlobalState,
   unknown,
-  GamenightActions
+  Action
 > => {
   return async (dispatch, getState) => {
     const {
       gamenight: { date, place, games, time },
     } = getState();
-    const dateFormat = format(date, 'dd/MM');
-    const timeFormat = format(time, 'kk:mm');
+    dispatch(startFetching());
     try {
       const proposedBy = await AsyncStorage.getItem('@username');
       await axios.post('/gamenight', {
         url: games[0].url,
         games,
         proposedBy,
-        date: dateFormat,
-        time: timeFormat,
+        date: date,
+        time: time,
         placeId: place.id,
       });
+      dispatch(fetchSuccess());
       dispatch(clearGamenight());
     } catch (err) {
+      dispatch(fetchError(err));
       console.log(err);
     }
   };

@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { TouchableNativeFeedback, View, Alert } from 'react-native';
 import {
   createStackNavigator,
@@ -23,7 +23,7 @@ type AddGamenightParamList = {
 const Stack = createStackNavigator<AddGamenightParamList>();
 
 const AddGamenightStack = () => {
-  const { date, games, place } = useSelector(
+  const { date, games, place, loading, status } = useSelector(
     (state: GlobalState) => state.gamenight
   );
 
@@ -32,8 +32,11 @@ const AddGamenightStack = () => {
 
   const postGamenight = useCallback((): void => {
     dispatch(addGamenight());
-    navigation.navigate('Home');
   }, [date, games, place]);
+
+  useEffect(() => {
+    if (!loading && status === 'success') navigation.navigate('Home');
+  }, [loading, status]);
 
   return (
     <Stack.Navigator

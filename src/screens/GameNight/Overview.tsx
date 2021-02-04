@@ -1,5 +1,6 @@
 import React, { memo } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import { format } from 'date-fns';
 
 import IconText from '../../components/IconText';
 import ParticipantCard from '../../components/ParticipantCard';
@@ -20,12 +21,17 @@ const Overview: React.FC<OverviewProps> = ({
         <IconText
           icon="calendar-today"
           size={16}
-          text={date}
+          text={format(new Date(date), 'dd/MM')}
           color={theme.light}
         />
       </View>
       <View style={styles.iconContainer}>
-        <IconText icon="timer" size={16} text={time} color={theme.light} />
+        <IconText
+          icon="timer"
+          size={16}
+          text={format(new Date(time), 'kk:mm')}
+          color={theme.light}
+        />
       </View>
       <View style={styles.iconContainer}>
         <IconText

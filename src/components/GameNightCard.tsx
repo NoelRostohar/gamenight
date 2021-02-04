@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useNavigation } from '@react-navigation/native';
+import { format } from 'date-fns';
 
 import IconText from './IconText';
 
@@ -41,7 +42,11 @@ const GamenightCard: React.FC<GamenightProps> = ({ gamenight }) => {
               <Text style={styles.user}>{proposedBy}</Text>
               <View style={[styles.row, styles.infoRow]}>
                 <View style={{ marginRight: 10 }}>
-                  <IconText icon="event" size={12} text={date} />
+                  <IconText
+                    icon="event"
+                    size={12}
+                    text={format(new Date(date), 'dd/MM')}
+                  />
                 </View>
                 <IconText
                   icon="location-on"

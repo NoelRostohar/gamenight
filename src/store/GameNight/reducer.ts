@@ -1,9 +1,6 @@
-import {
-  GamenightActions,
-  GamenightState,
-  GamenightActionTypes,
-} from './types';
-import { GameType, Place } from '../../types';
+import { GamenightState, GamenightActionTypes, Action } from './types';
+import { GameType } from '../../types';
+import { StateStatusTypes } from '../statusTypes';
 
 const initialState: GamenightState = {
   games: [],
@@ -14,11 +11,14 @@ const initialState: GamenightState = {
     address: '',
     id: undefined,
   },
+  loading: false,
+  error: '',
+  status: 'idle',
 };
 
 const GamenightReducer = (
   state = initialState,
-  action: GamenightActions
+  action: Action
 ): GamenightState => {
   switch (action.type) {
     case GamenightActionTypes.ChangePlace:
@@ -50,6 +50,25 @@ const GamenightReducer = (
       };
     case GamenightActionTypes.ClearGamenight:
       return initialState;
+    case StateStatusTypes.StartFetching:
+      return {
+        ...state,
+        loading: true,
+        status: 'fetching',
+      };
+    case StateStatusTypes.FetchSuccess:
+      return {
+        ...state,
+        loading: false,
+        status: 'success',
+      };
+    case StateStatusTypes.FetchError:
+      return {
+        ...state,
+        loading: false,
+        status: 'error',
+        error: action.error,
+      };
     default:
       return state;
   }

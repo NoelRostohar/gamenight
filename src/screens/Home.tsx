@@ -1,15 +1,18 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import { View, StyleSheet, Text, ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import ActionButton from '../components/ActionButton';
 import Gamenight, { CARD_WIDTH } from '../components/GamenightCard';
 import Game from '../components/Game';
 import Divider from '../components/Divider';
+import GetInitialData from '../components/GetInitialData';
+
+import { getGames } from '../store/Games/actions';
+import { getGamenights } from '../store/Gamenights/actions';
 
 import theme from '../theme';
-import { gameNight } from '../api';
 import { GameType } from '../types';
 import { GlobalState } from '../store';
 
@@ -17,8 +20,18 @@ import { GlobalState } from '../store';
 
 const Home = () => {
   const navigation = useNavigation();
+  const dispatch = useDispatch();
   const { games } = useSelector((state: GlobalState) => state.games);
   const { gamenights } = useSelector((state: GlobalState) => state.gamenights);
+
+  useEffect(() => {
+    const unsubscribe = navigation.addListener('focus', () => {
+      dispatch(getGamenights());
+      dispatch(getGames());
+    });
+
+    return unsubscribe;
+  }, []);
 
   return (
     <View style={styles.bg}>

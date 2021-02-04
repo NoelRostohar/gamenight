@@ -1,4 +1,5 @@
 import { GameType, Place } from '../../types';
+import { StateStatus, StateStatusActions } from '../statusTypes';
 
 export enum GamenightActionTypes {
   ChangePlace = 'ChangePlace',
@@ -9,7 +10,7 @@ export enum GamenightActionTypes {
   ClearGamenight = 'ClearGamenight',
 }
 
-export interface GamenightState {
+export interface GamenightState extends StateStatus {
   games: GameType[];
   place: Place;
   date: Date;
@@ -47,3 +48,5 @@ export type GamenightActions =
   | ChangeDateAction
   | ChangeTimeAction
   | ClearGamenightAction;
+
+export type Action = GamenightActions | StateStatusActions;

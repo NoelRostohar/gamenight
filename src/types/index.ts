@@ -13,6 +13,13 @@ export interface Theme {
   };
 }
 
+export enum FetchStatus {
+  fetching = 'fetching',
+  success = 'success',
+  error = 'error',
+  idle = 'idle',
+}
+
 export interface Genre {
   id: number;
   name: string;
@@ -61,8 +68,8 @@ export interface GamenightType {
   id: number;
   url: string;
   proposedBy: string;
-  date: string;
-  time: string;
+  date: Date;
+  time: Date;
   place: Place;
   chat: Chat[];
   participants: Participant[];

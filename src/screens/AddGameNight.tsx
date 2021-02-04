@@ -12,11 +12,12 @@ import { format } from 'date-fns';
 import Modal from 'react-native-modal';
 import { useNavigation } from '@react-navigation/native';
 import { useSelector, useDispatch } from 'react-redux';
+import DateTimePicker, { Event } from '@react-native-community/datetimepicker';
 
 import Input from '../components/Input';
 import GamePick from '../components/GamePick';
 import Divider from '../components/Divider';
-import DateTimePicker, { Event } from '@react-native-community/datetimepicker';
+import Loading from '../components/Loading';
 
 import theme from '../theme';
 import { GameType } from '../types';
@@ -37,7 +38,9 @@ const AddGamenight = () => {
     (state: GlobalState) => state.gamenight
   );
   const { games } = useSelector((state: GlobalState) => state.games);
-  const gamenightTest = useSelector((state: GlobalState) => state.gamenight);
+  const { loading, status } = useSelector(
+    (state: GlobalState) => state.gamenight
+  );
 
   const androidDateChange = (_: Event, selectedDate: any) => {
     const currentDate = selectedDate || date;
@@ -60,106 +63,110 @@ const AddGamenight = () => {
   }, [allSelected]);
 
   return (
-    <ScrollView style={styles.bg} contentContainerStyle={{ padding: 20 }}>
-      {showDatePicker && Platform.OS === 'android' && (
-        <DateTimePicker
-          onChange={androidDateChange}
-          value={new Date()}
-          mode={mode}
-          minimumDate={new Date()}
-          textColor={theme.light}
-          is24Hour
-        />
-      )}
-      <Modal
-        isVisible={showDatePicker && Platform.OS === 'ios'}
-        animationIn="bounceInUp"
-        useNativeDriver
-        onBackdropPress={() => {}}
-        useNativeDriverForBackdrop
-        backdropOpacity={0.95}
-      >
-        <View style={styles.iosModal}>
+    <>
+      {loading && status === 'fetching' && <Loading />}
+      <ScrollView style={styles.bg} contentContainerStyle={{ padding: 20 }}>
+        {showDatePicker && Platform.OS === 'android' && (
           <DateTimePicker
-            onChange={(e: Event, selectedDate: any) =>
-              dispatch(changeDate(selectedDate))
-            }
-            value={date}
-            mode="date"
-            minimumDate={new Date()}
-            textColor={theme.light}
-          />
-          <DateTimePicker
-            onChange={(e: Event, selectedTime: any) =>
-              dispatch(changeTime(selectedTime))
-            }
-            value={time}
-            mode="time"
+            onChange={androidDateChange}
+            value={new Date()}
+            mode={mode}
             minimumDate={new Date()}
             textColor={theme.light}
             is24Hour
           />
-          <Button title="Save" onPress={() => setShowDatePicker(false)} />
-        </View>
-      </Modal>
-      <Text>{JSON.stringify(gamenightTest, null, 2)}</Text>
-      <View style={styles.optionsRow}>
-        <View style={styles.optionsContainer}>
-          <Text style={styles.optionsTitle}>When?</Text>
-          <Text style={styles.optionsText}>
-            {!!date
-              ? `${format(date, 'dd/MM')}, ${format(time, 'kk:mm')}`
-              : 'No date selected.'}
-          </Text>
-          <TouchableOpacity>
-            <Text
-              style={styles.optionsButton}
-              onPress={() => setShowDatePicker(true)}
-            >
-              Change
-            </Text>
-          </TouchableOpacity>
-        </View>
-        <View style={styles.optionsContainer}>
-          <Text style={styles.optionsTitle}>Where?</Text>
-          <Text style={styles.optionsText}>
-            {!!place.name ? place.name : 'To be determined'}
-          </Text>
-          <TouchableOpacity onPress={() => navigation.navigate('SelectPlace')}>
-            <Text style={styles.optionsButton}>Change</Text>
-          </TouchableOpacity>
-        </View>
-      </View>
-      <View style={styles.filterRow}>
-        <Input
-          flexSize={2}
-          onChangeText={(text: string) => setFilterValue(text)}
-          value={filterValue}
-          icon="search"
-          placeholder="Search for games.."
-        />
-        <TouchableOpacity onPress={() => setAllSelected(true)}>
-          <Text style={styles.filterButton}>Select All</Text>
-        </TouchableOpacity>
-      </View>
-      {games.map((game: GameType) => {
-        return (
-          <View
-            style={{
-              display: !filterValue
-                ? 'flex'
-                : game.name.toLowerCase().includes(filterValue.toLowerCase())
-                ? 'flex'
-                : 'none',
-            }}
-            key={game.id}
-          >
-            <GamePick game={game} allSelected={allSelected} />
-            <Divider />
+        )}
+        <Modal
+          isVisible={showDatePicker && Platform.OS === 'ios'}
+          animationIn="bounceInUp"
+          useNativeDriver
+          onBackdropPress={() => {}}
+          useNativeDriverForBackdrop
+          backdropOpacity={0.95}
+        >
+          <View style={styles.iosModal}>
+            <DateTimePicker
+              onChange={(e: Event, selectedDate: any) =>
+                dispatch(changeDate(selectedDate))
+              }
+              value={date}
+              mode="date"
+              minimumDate={new Date()}
+              textColor={theme.light}
+            />
+            <DateTimePicker
+              onChange={(e: Event, selectedTime: any) =>
+                dispatch(changeTime(selectedTime))
+              }
+              value={time}
+              mode="time"
+              minimumDate={new Date()}
+              textColor={theme.light}
+              is24Hour
+            />
+            <Button title="Save" onPress={() => setShowDatePicker(false)} />
           </View>
-        );
-      })}
-    </ScrollView>
+        </Modal>
+        <View style={styles.optionsRow}>
+          <View style={styles.optionsContainer}>
+            <Text style={styles.optionsTitle}>When?</Text>
+            <Text style={styles.optionsText}>
+              {!!date
+                ? `${format(date, 'dd/MM')}, ${format(time, 'kk:mm')}`
+                : 'No date selected.'}
+            </Text>
+            <TouchableOpacity>
+              <Text
+                style={styles.optionsButton}
+                onPress={() => setShowDatePicker(true)}
+              >
+                Change
+              </Text>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.optionsContainer}>
+            <Text style={styles.optionsTitle}>Where?</Text>
+            <Text style={styles.optionsText}>
+              {!!place.name ? place.name : 'To be determined'}
+            </Text>
+            <TouchableOpacity
+              onPress={() => navigation.navigate('SelectPlace')}
+            >
+              <Text style={styles.optionsButton}>Change</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+        <View style={styles.filterRow}>
+          <Input
+            flexSize={2}
+            onChangeText={(text: string) => setFilterValue(text)}
+            value={filterValue}
+            icon="search"
+            placeholder="Search for games.."
+          />
+          <TouchableOpacity onPress={() => setAllSelected(true)}>
+            <Text style={styles.filterButton}>Select All</Text>
+          </TouchableOpacity>
+        </View>
+        {games.map((game: GameType) => {
+          return (
+            <View
+              style={{
+                display: !filterValue
+                  ? 'flex'
+                  : game.name.toLowerCase().includes(filterValue.toLowerCase())
+                  ? 'flex'
+                  : 'none',
+              }}
+              key={game.id}
+            >
+              <GamePick game={game} allSelected={allSelected} />
+              <Divider />
+            </View>
+          );
+        })}
+      </ScrollView>
+    </>
   );
 };
 
