@@ -29,7 +29,7 @@ const GamenightCard: React.FC<GamenightProps> = ({ gamenight }) => {
 
   return (
     <TouchableOpacity
-      onPress={() => navigation.navigate('GamenightNav', { gamenight })}
+      onPress={() => navigation.navigate('GamenightTabs', { gamenight })}
     >
       <View style={styles.root}>
         <ImageBackground style={styles.img} source={{ uri: url }}>

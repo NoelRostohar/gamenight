@@ -9,9 +9,12 @@ import { MaterialIcons } from '@expo/vector-icons';
 import Home from '../screens/Home';
 import GameDetails from '../screens/GameDetails';
 import HowToPlay from '../screens/HowToPlay';
-import AddGamenightNav from './AddGamenightNav';
-import GamenightNav from './GameNightnav';
+import AddGamenightNavigation from './AddGamenightNavigation';
+import GamenightTabs from './GamenightTabs';
 import VoteGames from '../screens/Gamenight/VoteGames';
+
+import HeaderRightActionButton from '../components/HeaderRightActionButton';
+import GamenightJoinButton from '../components/GamenightJoinButton';
 
 import theme from '../theme';
 import { GamenightType, GameType } from '../types';
@@ -20,8 +23,8 @@ export type MainStackParamList = {
   Home: undefined;
   GameDetails: GameType;
   HowToPlay: { howToPlay: string; name: string };
-  AddGamenightNav: undefined;
-  GamenightNav: { gamenight: GamenightType };
+  AddGamenightNavigation: undefined;
+  GamenightTabs: { gamenight: GamenightType };
   VoteGames: undefined;
 };
 
@@ -63,15 +66,16 @@ const MainStack = () => {
         options={{ headerBackTitle: '' }}
       />
       <Stack.Screen
-        name="AddGamenightNav"
-        component={AddGamenightNav}
+        name="AddGamenightNavigation"
+        component={AddGamenightNavigation}
         options={{ headerShown: false }}
       />
       <Stack.Screen
-        name="GamenightNav"
-        component={GamenightNav}
+        name="GamenightTabs"
+        component={GamenightTabs}
         options={({ route }) => ({
           title: route.params.gamenight.proposedBy + "'s Gamenight",
+          headerRight: () => <GamenightJoinButton />,
         })}
       />
       <Stack.Screen
@@ -81,6 +85,9 @@ const MainStack = () => {
           title: 'Choose Games',
           headerBackImage: () => (
             <MaterialIcons name="close" size={24} color={theme.light} />
+          ),
+          headerRight: () => (
+            <HeaderRightActionButton onPress={() => {}} icon="check" />
           ),
         }}
       />

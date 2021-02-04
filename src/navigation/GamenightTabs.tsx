@@ -6,7 +6,7 @@ import Overview from '../screens/Gamenight/Overview';
 import Chat from '../screens/Gamenight/Chat';
 import Games from '../screens/Gamenight/Games';
 
-import { MainStackParamList } from './';
+import { MainStackParamList } from '.';
 
 export type GamenightParamList = {
   Overview: undefined;
@@ -17,7 +17,7 @@ export type GamenightParamList = {
 const Tab = createMaterialTopTabNavigator<GamenightParamList>();
 
 interface GamenightNavProps {
-  route: RouteProp<MainStackParamList, 'GamenightNav'>;
+  route: RouteProp<MainStackParamList, 'GamenightTabs'>;
 }
 
 const GamenightNav: React.FC<GamenightNavProps> = ({ route }) => {

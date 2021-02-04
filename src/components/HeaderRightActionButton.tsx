@@ -1,5 +1,11 @@
 import React from 'react';
-import { View, TouchableNativeFeedback, StyleSheet } from 'react-native';
+import {
+  View,
+  TouchableNativeFeedback,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+} from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 
 import theme from '../theme';
@@ -7,13 +13,25 @@ import { Icon } from '../types';
 
 interface HeaderRightProps {
   onPress: () => void;
-  icon: Icon;
+  icon?: Icon;
+  text?: string;
+  color?: string;
 }
 
 const HeaderRightActionButton: React.FC<HeaderRightProps> = ({
   onPress,
   icon,
+  text,
+  color,
 }) => {
+  if (!!text) {
+    return (
+      <TouchableOpacity style={styles.button} onPress={onPress}>
+        <Text style={{ color }}>{text}</Text>
+      </TouchableOpacity>
+    );
+  }
+
   return (
     <TouchableNativeFeedback
       onPress={onPress}
@@ -21,7 +39,11 @@ const HeaderRightActionButton: React.FC<HeaderRightProps> = ({
       style={styles.button}
     >
       <View style={styles.iconContainer}>
-        <MaterialIcons name={icon} size={24} color={theme.confirmation} />
+        <MaterialIcons
+          name={icon}
+          size={24}
+          color={color || theme.confirmation}
+        />
       </View>
     </TouchableNativeFeedback>
   );
@@ -29,7 +51,7 @@ const HeaderRightActionButton: React.FC<HeaderRightProps> = ({
 
 const styles = StyleSheet.create({
   button: {
-    marginRight: 5,
+    marginRight: 10,
   },
   iconContainer: {
     width: 30,
