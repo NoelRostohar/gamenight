@@ -15,31 +15,22 @@ import { useNavigation } from '@react-navigation/native';
 import { useSelector, useDispatch } from 'react-redux';
 import DateTimePicker, { Event } from '@react-native-community/datetimepicker';
 
-import Input from '../components/Input';
-import GamePick from '../components/GamePick';
-import Divider from '../components/Divider';
 import Loading from '../components/Loading';
+import GameSelect from '../components/GameSelect';
 
 import theme from '../theme';
-import { GameType } from '../types';
 import { GlobalState } from '../store';
 import { changeDate, changeTime } from '../store/Gamenight/actions';
 
 type DateTimePickerMode = 'date' | 'time';
 
 const AddGamenight = () => {
-  const [filterValue, setFilterValue] = useState<string>('');
-  const [allSelected, setAllSelected] = useState<boolean>(false);
   const [showDatePicker, setShowDatePicker] = useState<boolean>(false);
   const [mode, setMode] = useState<DateTimePickerMode>('date');
 
   const navigation = useNavigation();
   const dispatch = useDispatch();
-  const { date, time, place } = useSelector(
-    (state: GlobalState) => state.gamenight
-  );
-  const { games } = useSelector((state: GlobalState) => state.games);
-  const { loading, status } = useSelector(
+  const { date, time, place, loading, status } = useSelector(
     (state: GlobalState) => state.gamenight
   );
 
@@ -58,10 +49,6 @@ const AddGamenight = () => {
       ? dispatch(changeDate(currentDate))
       : dispatch(changeTime(currentTime));
   };
-
-  useEffect(() => {
-    if (allSelected) setAllSelected(false);
-  }, [allSelected]);
 
   useEffect(() => {
     if (!loading && status === 'error')
@@ -142,35 +129,7 @@ const AddGamenight = () => {
             </TouchableOpacity>
           </View>
         </View>
-        <View style={styles.filterRow}>
-          <Input
-            flexSize={2}
-            onChangeText={(text: string) => setFilterValue(text)}
-            value={filterValue}
-            icon="search"
-            placeholder="Search for games.."
-          />
-          <TouchableOpacity onPress={() => setAllSelected(true)}>
-            <Text style={styles.filterButton}>Select All</Text>
-          </TouchableOpacity>
-        </View>
-        {games.map((game: GameType) => {
-          return (
-            <View
-              style={{
-                display: !filterValue
-                  ? 'flex'
-                  : game.name.toLowerCase().includes(filterValue.toLowerCase())
-                  ? 'flex'
-                  : 'none',
-              }}
-              key={game.id}
-            >
-              <GamePick game={game} allSelected={allSelected} />
-              <Divider />
-            </View>
-          );
-        })}
+        <GameSelect />
       </ScrollView>
     </>
   );
@@ -206,17 +165,6 @@ const styles = StyleSheet.create({
     textTransform: 'uppercase',
     fontSize: 14,
     marginTop: 6,
-  },
-  filterRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 25,
-  },
-  filterButton: {
-    color: theme.primary,
-    textTransform: 'uppercase',
-    fontSize: 14,
-    marginLeft: 20,
   },
 });
 
