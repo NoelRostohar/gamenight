@@ -1,5 +1,11 @@
-import React, { Fragment, useEffect } from 'react';
-import { View, StyleSheet, Text, ScrollView } from 'react-native';
+import React, { Fragment, useEffect, useCallback, useState } from 'react';
+import {
+  View,
+  StyleSheet,
+  Text,
+  ScrollView,
+  RefreshControl,
+} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -7,7 +13,6 @@ import ActionButton from '../components/ActionButton';
 import Gamenight, { CARD_WIDTH } from '../components/GamenightCard';
 import Game from '../components/Game';
 import Divider from '../components/Divider';
-import GetInitialData from '../components/GetInitialData';
 
 import { getGames } from '../store/Games/actions';
 import { getGamenights } from '../store/Gamenights/actions';
@@ -21,21 +26,33 @@ import { GlobalState } from '../store';
 const Home = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
+
+  const [refreshing, setRefreshing] = useState<boolean>(false);
+
   const { games } = useSelector((state: GlobalState) => state.games);
   const { gamenights } = useSelector((state: GlobalState) => state.gamenights);
 
+  const refresh = useCallback(() => {
+    setRefreshing(true);
+    dispatch(getGamenights());
+    dispatch(getGames());
+    setRefreshing(false);
+  }, []);
+
   useEffect(() => {
-    const unsubscribe = navigation.addListener('focus', () => {
-      dispatch(getGamenights());
-      dispatch(getGames());
-    });
+    const unsubscribe = navigation.addListener('focus', () => refresh());
 
     return unsubscribe;
   }, []);
 
   return (
     <View style={styles.bg}>
-      <ScrollView nestedScrollEnabled>
+      <ScrollView
+        nestedScrollEnabled
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={refresh} />
+        }
+      >
         <ScrollView
           horizontal
           nestedScrollEnabled
