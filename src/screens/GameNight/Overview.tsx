@@ -31,9 +31,9 @@ const Overview: React.FC<OverviewProps> = ({
         <IconText
           icon="location-pin"
           size={16}
-          text={place.name}
+          text={place ? place.name : 'To be determined'}
           color={theme.light}
-          subtext={place.address}
+          subtext={place && place.address}
         />
       </View>
       <View style={styles.section}>

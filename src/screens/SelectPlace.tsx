@@ -54,7 +54,7 @@ const SelectPlace = () => {
           <TouchableOpacity
             onPress={() => {
               setPlaceSelected(true);
-              dispatch(changePlace({ name, address }));
+              dispatch(changePlace({ name, address, id }));
               navigation.goBack();
             }}
             disabled={placeSelected}

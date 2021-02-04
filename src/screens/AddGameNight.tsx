@@ -37,6 +37,7 @@ const AddGamenight = () => {
     (state: GlobalState) => state.gamenight
   );
   const { games } = useSelector((state: GlobalState) => state.games);
+  const gamenightTest = useSelector((state: GlobalState) => state.gamenight);
 
   const androidDateChange = (_: Event, selectedDate: any) => {
     const currentDate = selectedDate || date;
@@ -101,6 +102,7 @@ const AddGamenight = () => {
           <Button title="Save" onPress={() => setShowDatePicker(false)} />
         </View>
       </Modal>
+      <Text>{JSON.stringify(gamenightTest, null, 2)}</Text>
       <View style={styles.optionsRow}>
         <View style={styles.optionsContainer}>
           <Text style={styles.optionsTitle}>When?</Text>

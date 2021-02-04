@@ -7,14 +7,13 @@ import {
 import { useNavigation } from '@react-navigation/native';
 import { MaterialIcons } from '@expo/vector-icons';
 import { useSelector, useDispatch } from 'react-redux';
-import { format } from 'date-fns';
 
 import AddGamenight from '../screens/AddGamenight';
 import SelectPlace from '../screens/SelectPlace';
 
 import theme from '../theme';
 import { GlobalState } from '../store';
-import { clearGamenight } from '../store/Gamenight/actions';
+import { addGamenight } from '../store/Gamenight/actions';
 
 type AddGamenightParamList = {
   AddGamenight: undefined;
@@ -31,12 +30,8 @@ const AddGamenightStack = () => {
   const dispatch = useDispatch();
   const navigation = useNavigation();
 
-  const addGamenight = useCallback((): void => {
-    const dateToString = format(date, 'dd/MM');
-    const url = games[0].url;
-    //TODO: Push To Server
-
-    dispatch(clearGamenight());
+  const postGamenight = useCallback((): void => {
+    dispatch(addGamenight());
     navigation.navigate('Home');
   }, [date, games, place]);
 
@@ -64,7 +59,7 @@ const AddGamenightStack = () => {
               onPress={() =>
                 games.length < 1
                   ? Alert.alert('Warning', 'Please select at least one game.')
-                  : addGamenight()
+                  : postGamenight()
               }
               background={TouchableNativeFeedback.Ripple(theme.light, true, 15)}
               style={{ marginRight: 5 }}

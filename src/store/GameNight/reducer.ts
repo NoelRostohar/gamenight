@@ -3,7 +3,7 @@ import {
   GamenightState,
   GamenightActionTypes,
 } from './types';
-import { GameType } from '../../types';
+import { GameType, Place } from '../../types';
 
 const initialState: GamenightState = {
   games: [],
@@ -12,6 +12,7 @@ const initialState: GamenightState = {
   place: {
     name: '',
     address: '',
+    id: undefined,
   },
 };
 

@@ -43,7 +43,11 @@ const GamenightCard: React.FC<GamenightProps> = ({ gamenight }) => {
                 <View style={{ marginRight: 10 }}>
                   <IconText icon="event" size={12} text={date} />
                 </View>
-                <IconText icon="location-on" size={12} text={place.name} />
+                <IconText
+                  icon="location-on"
+                  size={12}
+                  text={place ? place.name : 'TBD'}
+                />
               </View>
             </View>
           </LinearGradient>
