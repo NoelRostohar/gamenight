@@ -1,7 +1,8 @@
-import { GamenightType } from '../../types';
+import { GamenightType, Participant } from '../../types';
 
 export enum GamenightsActionTypes {
   StoreGamenights = 'StoreGamenights',
+  UpdateGamenight = 'UpdateGamenight',
 }
 
 export interface GamenightsState {
@@ -13,4 +14,10 @@ export interface StoreGamenights {
   gamenights: GamenightType[];
 }
 
-export type GamenightsActions = StoreGamenights;
+export interface UpdateGamenight {
+  type: GamenightsActionTypes.UpdateGamenight;
+  gamenightId: number;
+  gamenight: GamenightType;
+}
+
+export type GamenightsActions = StoreGamenights | UpdateGamenight;

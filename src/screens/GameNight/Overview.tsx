@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, ScrollView, Text, StyleSheet } from 'react-native';
 import { format } from 'date-fns';
 
 import IconText from '../../components/IconText';
@@ -15,8 +15,10 @@ interface OverviewProps {
 const Overview: React.FC<OverviewProps> = ({
   gamenight: { date, participants, place, time },
 }) => {
+  console.log(participants);
+
   return (
-    <View style={styles.bg}>
+    <ScrollView contentContainerStyle={styles.bg}>
       <View style={styles.iconContainer}>
         <IconText
           icon="calendar-today"
@@ -50,7 +52,7 @@ const Overview: React.FC<OverviewProps> = ({
           <ParticipantCard key={participant.id} participant={participant} />
         );
       })}
-    </View>
+    </ScrollView>
   );
 };
 

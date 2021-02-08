@@ -1,22 +1,26 @@
+import produce, { Draft } from 'immer';
+
 import {
   GamenightsState,
   GamenightsActions,
   GamenightsActionTypes,
 } from './types';
 
-const gamenightsReducer = (
-  state: GamenightsState = { gamenights: [] },
-  action: GamenightsActions
-): GamenightsState => {
-  switch (action.type) {
-    case GamenightsActionTypes.StoreGamenights:
-      return {
-        ...state,
-        gamenights: action.gamenights,
-      };
-    default:
-      return state;
-  }
-};
+const gamenightsReducer = produce(
+  (draft: Draft<GamenightsState>, action: GamenightsActions) => {
+    switch (action.type) {
+      case GamenightsActionTypes.StoreGamenights:
+        draft.gamenights = action.gamenights;
+        break;
+      case GamenightsActionTypes.UpdateGamenight:
+        const index = draft.gamenights.findIndex(
+          (gamenight) => gamenight.id === action.gamenightId
+        );
+        draft.gamenights[index] = action.gamenight;
+        break;
+    }
+  },
+  { gamenights: [] }
+);
 
 export default gamenightsReducer;

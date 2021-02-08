@@ -1,10 +1,11 @@
-import React from 'react';
-import { Text, StyleSheet } from 'react-native';
+import React, { useCallback } from 'react';
+import { Text, StyleSheet, Alert } from 'react-native';
 import {
   createStackNavigator,
   CardStyleInterpolators,
 } from '@react-navigation/stack';
 import { MaterialIcons } from '@expo/vector-icons';
+import { useSelector, useDispatch } from 'react-redux';
 
 import Home from '../screens/Home';
 import GameDetails from '../screens/GameDetails';
@@ -14,10 +15,11 @@ import GamenightTabs from './GamenightTabs';
 import VoteGames from '../screens/Gamenight/VoteGames';
 
 import HeaderRightActionButton from '../components/HeaderRightActionButton';
-import GamenightJoinButton from '../components/GamenightJoinButton';
 
 import theme from '../theme';
 import { GamenightType, GameType } from '../types';
+import { GlobalState } from '../store';
+import { joinGamenight } from '../store/Gamenight/actions';
 
 export type MainStackParamList = {
   Home: undefined;
@@ -25,12 +27,15 @@ export type MainStackParamList = {
   HowToPlay: { howToPlay: string; name: string };
   AddGamenightNavigation: undefined;
   GamenightTabs: { gamenight: GamenightType };
-  VoteGames: undefined;
+  VoteGames: { gamenight: GamenightType };
 };
 
 const Stack = createStackNavigator<MainStackParamList>();
 
 const MainStack = () => {
+  const dispatch = useDispatch();
+  const { games } = useSelector((state: GlobalState) => state.gamenight);
+
   return (
     <Stack.Navigator
       screenOptions={{
@@ -73,23 +78,43 @@ const MainStack = () => {
       <Stack.Screen
         name="GamenightTabs"
         component={GamenightTabs}
-        options={({ route }) => ({
+        options={({ navigation, route }) => ({
           title: route.params.gamenight.proposedBy + "'s Gamenight",
-          headerRight: () => <GamenightJoinButton />,
+          headerRight: () => (
+            <HeaderRightActionButton
+              color={theme.primary}
+              onPress={() =>
+                navigation.navigate('VoteGames', {
+                  gamenight: route.params.gamenight,
+                })
+              }
+              text="JOIN"
+            />
+          ),
         })}
       />
       <Stack.Screen
         name="VoteGames"
         component={VoteGames}
-        options={{
+        options={({ route, navigation }) => ({
           title: 'Choose Games',
           headerBackImage: () => (
             <MaterialIcons name="close" size={24} color={theme.light} />
           ),
           headerRight: () => (
-            <HeaderRightActionButton onPress={() => {}} icon="check" />
+            <HeaderRightActionButton
+              icon="check"
+              color={theme.confirmation}
+              onPress={() =>
+                games.length < 1
+                  ? Alert.alert('Warning', 'Please select at least one game.')
+                  : dispatch(
+                      joinGamenight(route.params.gamenight.id, navigation)
+                    )
+              }
+            />
           ),
-        }}
+        })}
       />
     </Stack.Navigator>
   );

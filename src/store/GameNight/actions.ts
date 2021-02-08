@@ -6,6 +6,7 @@ import axios from '../../../axiosInstance';
 import { GameType, Place } from '../../types';
 import { GlobalState } from '../';
 import { fetchError, fetchSuccess, startFetching } from '../statusActions';
+import { updateGamenight } from '../Gamenights/actions';
 
 export const changePlace = (place: Place): GamenightActions => {
   return {
@@ -73,6 +74,32 @@ export const addGamenight = (): ThunkAction<
     } catch (err) {
       dispatch(fetchError(err));
       console.log(err);
+    }
+  };
+};
+
+export const joinGamenight = (
+  gamenightId: number,
+  navigation: any
+): ThunkAction<void, GlobalState, unknown, any> => {
+  return async (dispatch, getState) => {
+    const {
+      gamenight: { games },
+    } = getState();
+    dispatch(startFetching());
+    try {
+      const username = await AsyncStorage.getItem('@username');
+      const res = await axios.post(`/gamenight/join/${gamenightId}`, {
+        games,
+        username,
+      });
+      dispatch(updateGamenight({ gamenightId, gamenight: res.data }));
+      dispatch(fetchSuccess());
+      dispatch(clearGamenight());
+      navigation.navigate('GamenightTabs');
+    } catch (err) {
+      dispatch(fetchError(err));
+      console.log(err.message);
     }
   };
 };
