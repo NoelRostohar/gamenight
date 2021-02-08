@@ -89,11 +89,10 @@ export const joinGamenight = (
     dispatch(startFetching());
     try {
       const username = await AsyncStorage.getItem('@username');
-      const res = await axios.post(`/gamenight/join/${gamenightId}`, {
+      await axios.post(`/gamenight/join/${gamenightId}`, {
         games,
         username,
       });
-      dispatch(updateGamenight({ gamenightId, gamenight: res.data }));
       dispatch(fetchSuccess());
       dispatch(clearGamenight());
       navigation.navigate('GamenightTabs');

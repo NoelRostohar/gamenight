@@ -8,7 +8,7 @@ import theme from '../../theme';
 import { GamenightType, GameType, Participant } from 'src/types';
 
 interface GamesProps {
-  gamenight: GamenightType;
+  gamenight: GamenightType | undefined;
 }
 
 interface GameCountType extends GamenightType {
@@ -52,7 +52,9 @@ const reducer = (state = initialState, action: any) => {
   }
 };
 
-const Games: React.FC<GamesProps> = ({ gamenight: { participants } }) => {
+const Games: React.FC<GamesProps> = ({ gamenight }) => {
+  if (!gamenight) return null;
+
   const [state, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {
@@ -66,6 +68,8 @@ const Games: React.FC<GamesProps> = ({ gamenight: { participants } }) => {
       });
     });
   }, []);
+
+  const { participants } = gamenight;
 
   return (
     <ScrollView contentContainerStyle={{ paddingHorizontal: 20 }}>

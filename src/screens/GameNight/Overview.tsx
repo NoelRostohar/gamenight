@@ -9,13 +9,13 @@ import theme from '../../theme';
 import { GamenightType, Participant } from '../../types';
 
 interface OverviewProps {
-  gamenight: GamenightType;
+  gamenight: GamenightType | undefined;
 }
 
-const Overview: React.FC<OverviewProps> = ({
-  gamenight: { date, participants, place, time },
-}) => {
-  console.log(participants);
+const Overview: React.FC<OverviewProps> = ({ gamenight }) => {
+  if (!gamenight) return null;
+
+  const { date, participants, place, time } = gamenight;
 
   return (
     <ScrollView contentContainerStyle={styles.bg}>

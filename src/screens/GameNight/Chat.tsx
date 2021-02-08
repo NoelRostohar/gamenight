@@ -14,10 +14,13 @@ import theme from '../../theme';
 import { GamenightType } from '../../types';
 
 interface ChatProps {
-  gamenight: GamenightType;
+  gamenight: GamenightType | undefined;
 }
 
-const Chat: React.FC<ChatProps> = ({ gamenight: { chat } }) => {
+const Chat: React.FC<ChatProps> = ({ gamenight }) => {
+  if (!gamenight) return null;
+
+  const { chat } = gamenight;
   return (
     <>
       {chat.length > 0 ? (
