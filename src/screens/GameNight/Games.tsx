@@ -55,6 +55,8 @@ const reducer = (state = initialState, action: any) => {
 const Games: React.FC<GamesProps> = ({ gamenight }) => {
   if (!gamenight) return null;
 
+  const { participants } = gamenight;
+
   const [state, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {
@@ -67,9 +69,7 @@ const Games: React.FC<GamesProps> = ({ gamenight }) => {
         });
       });
     });
-  }, []);
-
-  const { participants } = gamenight;
+  }, [gamenight]);
 
   return (
     <ScrollView contentContainerStyle={{ paddingHorizontal: 20 }}>
