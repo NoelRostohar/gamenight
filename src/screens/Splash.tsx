@@ -1,37 +1,43 @@
-import React, { useState, useEffect } from 'react';
-import AppLoading from 'expo-app-loading';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import React, { useState, useEffect } from "react";
+import AppLoading from "expo-app-loading";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useDispatch } from "react-redux";
 
-import MainStack from '../navigation';
-import Login from './Login';
+import MainStack from "../navigation";
+import Login from "./Login";
+
+import { storeUser } from "../store/User/actions";
 
 const Splash = () => {
-  const [appReady, setAppReady] = useState<boolean>(false);
-  const [isAuth, setIsAuth] = useState<boolean>(false);
+	const dispatch = useDispatch();
 
-  useEffect(() => {
-    (async () => {
-      try {
-        const username = await AsyncStorage.getItem('@username');
-        if (username) {
-          setIsAuth(true);
-          setAppReady(true);
-        } else {
-          setAppReady(true);
-        }
-      } catch (err) {
-        console.log(err);
-      }
-    })();
-  }, []);
+	const [appReady, setAppReady] = useState<boolean>(false);
+	const [isAuth, setIsAuth] = useState<boolean>(false);
 
-  if (!appReady) {
-    return <AppLoading />;
-  }
+	useEffect(() => {
+		(async () => {
+			try {
+				const username = await AsyncStorage.getItem("@username");
+				if (username) {
+					dispatch(storeUser(username));
+					setIsAuth(true);
+					setAppReady(true);
+				} else {
+					setAppReady(true);
+				}
+			} catch (err) {
+				console.log(err);
+			}
+		})();
+	}, []);
 
-  return (
-    <>{isAuth ? <MainStack /> : <Login submit={() => setIsAuth(true)} />}</>
-  );
+	if (!appReady) {
+		return <AppLoading />;
+	}
+
+	return (
+		<>{isAuth ? <MainStack /> : <Login submit={() => setIsAuth(true)} />}</>
+	);
 };
 
 export default Splash;
