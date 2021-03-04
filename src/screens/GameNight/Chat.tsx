@@ -1,18 +1,22 @@
-import React, { memo, useEffect } from "react";
+import React, { memo, useEffect, useState, useMemo } from "react";
 import {
 	View,
 	Text,
 	StyleSheet,
 	TouchableOpacity,
 	FlatList,
+	NativeSyntheticEvent,
+	TextInputChangeEventData,
 } from "react-native";
 import { io } from "socket.io-client";
+import { useSelector } from "react-redux";
 
 import Input from "../../components/Input";
 import ChatBubble from "../../components/ChatBubble";
 
 import theme from "../../theme";
-import { GamenightType } from "../../types";
+import { GamenightType, ChatType } from "../../types";
+import { GlobalState } from "../../store";
 
 interface ChatProps {
 	gamenight: GamenightType | undefined;
@@ -21,23 +25,42 @@ interface ChatProps {
 const Chat: React.FC<ChatProps> = ({ gamenight }) => {
 	if (!gamenight) return null;
 
-	const { chat } = gamenight;
+	const { chat, id } = gamenight;
+	const user = useSelector((state: GlobalState) => state.user);
+
+	const [gamenightChat, setGamenightChat] = useState<ChatType[]>(chat);
+	const [msg, setMsg] = useState<string>("");
+
+	const socket = useMemo(() => io("http://192.168.34.87:3000"), []);
+
+	const sendMsg = (text: string) => {
+		setMsg("");
+		socket.emit("sendMessage", {
+			username: user,
+			message: text,
+			gamenightId: id,
+		});
+	};
 
 	useEffect(() => {
-		const socket = io("http://192.168.34.87:3000");
-
 		socket.connect();
+		socket.emit("joinChat", gamenight.id);
+
+		socket.on("chatUpdate", (incChat: ChatType[]) => {
+			setGamenightChat((prev) => [incChat[0], ...prev]);
+		});
 
 		return () => {
+			socket.emit("leaveChat");
 			socket.disconnect();
 		};
 	}, []);
 
 	return (
 		<>
-			{chat.length > 0 ? (
+			{gamenightChat.length > 0 ? (
 				<FlatList
-					data={chat}
+					data={gamenightChat}
 					renderItem={({ item }) => <ChatBubble chat={item} />}
 					keyExtractor={({ id }) => id.toString()}
 					contentContainerStyle={{ paddingHorizontal: 20 }}
@@ -50,14 +73,21 @@ const Chat: React.FC<ChatProps> = ({ gamenight }) => {
 			)}
 			<View style={styles.inputContainer}>
 				<Input
+					value={msg}
 					icon='send'
 					flexSize={1}
+					onChangeText={(text: string) => setMsg(text)}
 					placeholder='Send a message'
 					button={
-						<TouchableOpacity>
+						<TouchableOpacity onPress={() => sendMsg(msg)}>
 							<Text style={styles.button}>SEND</Text>
 						</TouchableOpacity>
 					}
+					onSubmitEditing={(
+						event: NativeSyntheticEvent<TextInputChangeEventData>
+					) => {
+						sendMsg(event.nativeEvent.text);
+					}}
 				/>
 			</View>
 		</>
