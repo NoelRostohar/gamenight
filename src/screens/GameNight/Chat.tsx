@@ -70,7 +70,7 @@ const Chat: React.FC<ChatProps> = ({ gamenight }) => {
 						<ChatBubble isUser={item.username === user} chat={item} />
 					)}
 					keyExtractor={({ id }) => id.toString()}
-					contentContainerStyle={{ paddingHorizontal: 20 }}
+					contentContainerStyle={{ paddingHorizontal: 20, paddingVertical: 10 }}
 					inverted
 				/>
 			) : (
