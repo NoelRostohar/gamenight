@@ -29,6 +29,11 @@ const Chat: React.FC<ChatProps> = ({ gamenight }) => {
 	const user = useSelector((state: GlobalState) => state.user);
 
 	const [gamenightChat, setGamenightChat] = useState<ChatType[]>(chat);
+
+	const sortedChat = useMemo(
+		() => gamenightChat.slice().sort((a, b) => b.id - a.id),
+		[gamenightChat]
+	);
 	const [msg, setMsg] = useState<string>("");
 
 	const socket = useMemo(() => io("http://192.168.34.87:3000"), []);
@@ -58,10 +63,12 @@ const Chat: React.FC<ChatProps> = ({ gamenight }) => {
 
 	return (
 		<>
-			{gamenightChat.length > 0 ? (
+			{sortedChat.length > 0 ? (
 				<FlatList
-					data={gamenightChat}
-					renderItem={({ item }) => <ChatBubble chat={item} />}
+					data={sortedChat}
+					renderItem={({ item }) => (
+						<ChatBubble isUser={item.username === user} chat={item} />
+					)}
 					keyExtractor={({ id }) => id.toString()}
 					contentContainerStyle={{ paddingHorizontal: 20 }}
 					inverted
