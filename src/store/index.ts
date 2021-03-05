@@ -12,11 +12,15 @@ import { GamesState } from "./Games/types";
 import userReducer from "./User/reducer";
 import { UserState } from "./User/types";
 
+import changedGamesReducer from "./ChangedGames/reducer";
+import { ChangedGamesState } from "./ChangedGames/types";
+
 export interface GlobalState {
 	gamenight: GamenightState;
 	gamenights: GamenightsState;
 	games: GamesState;
 	user: UserState;
+	changedGames: ChangedGamesState;
 }
 
 const reducers = combineReducers({
@@ -24,6 +28,7 @@ const reducers = combineReducers({
 	gamenights: gamenightsReducer,
 	games: gamesReducer,
 	user: userReducer,
+	changedGames: changedGamesReducer,
 });
 
 export default reducers;

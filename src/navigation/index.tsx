@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React from "react";
 import { Text, StyleSheet, Alert } from "react-native";
 import {
 	createStackNavigator,
@@ -6,6 +6,7 @@ import {
 } from "@react-navigation/stack";
 import { MaterialIcons } from "@expo/vector-icons";
 import { useSelector, useDispatch } from "react-redux";
+import axios from "../../axiosInstance";
 
 import Home from "../screens/Home";
 import GameDetails from "../screens/GameDetails";
@@ -37,6 +38,8 @@ const Stack = createStackNavigator<MainStackParamList>();
 const MainStack = () => {
 	const dispatch = useDispatch();
 	const { games } = useSelector((state: GlobalState) => state.gamenight);
+	const user = useSelector((state: GlobalState) => state.user);
+	const changedGames = useSelector((state: GlobalState) => state.changedGames);
 
 	return (
 		<Stack.Navigator
@@ -130,11 +133,15 @@ const MainStack = () => {
 						<HeaderRightActionButton
 							icon='check'
 							color={theme.confirmation}
-							onPress={() =>
-								games.length < 1
-									? Alert.alert("Warning", "Please select at least one game.")
-									: null
-							}
+							onPress={() => {
+								const participantId = route.params.gamenight.participants.find(
+									(participant) => participant.username === user
+								)?.id;
+								axios.patch(
+									`/gamenight/participants/${participantId}`,
+									changedGames
+								);
+							}}
 						/>
 					),
 				})}

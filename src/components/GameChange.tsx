@@ -1,8 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { View, Switch, StyleSheet } from "react-native";
+import { useDispatch } from "react-redux";
 
 import Game from "./Game";
 
+import {
+	addGame,
+	removeGame,
+	deleteAdded,
+	deleteRemoved,
+} from "../store/ChangedGames/actions";
 import theme from "../theme";
 import { GameType } from "../types";
 
@@ -17,13 +24,25 @@ const GameChange: React.FC<GameChangeProps> = ({
 	allSelected,
 	games,
 }) => {
-	const [switchStatus, setSwitchStatus] = useState<boolean>(
-		games.some((stateGame: GameType) => stateGame.id === game.id)
+	const dispatch = useDispatch();
+
+	const gameIncluded = useMemo(
+		() => games.some((stateGame: GameType) => stateGame.id === game.id),
+		[games]
 	);
+
+	const [switchStatus, setSwitchStatus] = useState<boolean>(gameIncluded);
 
 	useEffect(() => {
 		if (allSelected) setSwitchStatus(true);
 	}, [allSelected]);
+
+	useEffect(() => {
+		if (gameIncluded && !switchStatus) dispatch(removeGame(game.id));
+		else if (!gameIncluded && switchStatus) dispatch(addGame(game));
+		else if (!gameIncluded && !switchStatus) dispatch(deleteAdded(game.id));
+		else if (gameIncluded && switchStatus) dispatch(deleteRemoved(game.id));
+	}, [switchStatus]);
 
 	return (
 		<View style={styles.gameRow}>

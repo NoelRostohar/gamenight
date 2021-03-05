@@ -1,11 +1,12 @@
 import React, { useEffect } from "react";
 import { ScrollView, Alert } from "react-native";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { RouteProp } from "@react-navigation/native";
 
 import GameSelect from "../../components/GameSelect";
 import Loading from "../../components/Loading";
 
+import { clearChangedGames } from "../../store/ChangedGames/actions";
 import { GlobalState } from "../../store";
 import { MainStackParamList } from "../../navigation";
 
@@ -18,6 +19,8 @@ const ChangeGames: React.FC<ChangeGamesProps> = ({ route }) => {
 		(state: GlobalState) => state.gamenight
 	);
 
+	const dispatch = useDispatch();
+
 	const user = useSelector((state: GlobalState) => state.user);
 
 	const { participants } = route.params.gamenight;
@@ -25,6 +28,10 @@ const ChangeGames: React.FC<ChangeGamesProps> = ({ route }) => {
 	useEffect(() => {
 		if (!loading && status === "error")
 			Alert.alert("Error", "There was a problem with the server.");
+
+		return () => {
+			dispatch(clearChangedGames);
+		};
 	}, [loading, status]);
 
 	return (
