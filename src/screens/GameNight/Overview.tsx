@@ -2,6 +2,7 @@ import React, { memo } from "react";
 import { View, ScrollView, Text, StyleSheet } from "react-native";
 import { format } from "date-fns";
 import { useSelector } from "react-redux";
+import { useNavigation } from "@react-navigation/native";
 
 import IconText from "../../components/IconText";
 import ParticipantCard from "../../components/ParticipantCard";
@@ -17,6 +18,7 @@ interface OverviewProps {
 const Overview: React.FC<OverviewProps> = ({ gamenight }) => {
 	if (!gamenight) return null;
 
+	const navigation = useNavigation();
 	const user = useSelector((state: GlobalState) => state.user);
 
 	const { date, participants, place, time } = gamenight;
@@ -57,6 +59,7 @@ const Overview: React.FC<OverviewProps> = ({ gamenight }) => {
 						key={participant.id}
 						participant={participant}
 						isUser={participant.username === user}
+						onPress={() => navigation.navigate("ChangeGames", { gamenight })}
 					/>
 				);
 			})}

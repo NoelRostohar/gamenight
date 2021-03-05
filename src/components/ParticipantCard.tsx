@@ -10,11 +10,13 @@ import { GameType, Participant } from "src/types";
 interface ParticipantCard {
 	participant: Participant;
 	isUser: boolean;
+	onPress: () => void;
 }
 
 const ParticipantCard: React.FC<ParticipantCard> = ({
 	participant,
 	isUser,
+	onPress,
 }) => {
 	const gamelist = useCallback(
 		(games: GameType[]) => {
@@ -62,7 +64,7 @@ const ParticipantCard: React.FC<ParticipantCard> = ({
 					</View>
 				</View>
 				{isUser && (
-					<TouchableOpacity style={styles.button}>
+					<TouchableOpacity style={styles.button} onPress={onPress}>
 						<Text style={styles.buttonText}>Change</Text>
 					</TouchableOpacity>
 				)}

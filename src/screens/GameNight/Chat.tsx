@@ -29,12 +29,12 @@ const Chat: React.FC<ChatProps> = ({ gamenight }) => {
 	const user = useSelector((state: GlobalState) => state.user);
 
 	const [gamenightChat, setGamenightChat] = useState<ChatType[]>(chat);
+	const [msg, setMsg] = useState<string>("");
 
 	const sortedChat = useMemo(
 		() => gamenightChat.slice().sort((a, b) => b.id - a.id),
 		[gamenightChat]
 	);
-	const [msg, setMsg] = useState<string>("");
 
 	const socket = useMemo(() => io("http://192.168.34.87:3000"), []);
 
