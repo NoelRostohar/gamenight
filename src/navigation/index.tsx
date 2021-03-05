@@ -137,10 +137,12 @@ const MainStack = () => {
 								const participantId = route.params.gamenight.participants.find(
 									(participant) => participant.username === user
 								)?.id;
-								axios.patch(
-									`/gamenight/participants/${participantId}`,
-									changedGames
-								);
+								axios
+									.patch(
+										`/gamenight/participants/${participantId}`,
+										changedGames
+									)
+									.then(() => navigation.goBack());
 							}}
 						/>
 					),

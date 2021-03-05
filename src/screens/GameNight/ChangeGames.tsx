@@ -30,7 +30,7 @@ const ChangeGames: React.FC<ChangeGamesProps> = ({ route }) => {
 			Alert.alert("Error", "There was a problem with the server.");
 
 		return () => {
-			dispatch(clearChangedGames);
+			dispatch(clearChangedGames());
 		};
 	}, [loading, status]);
 
